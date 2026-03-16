@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProtectV — Premium Insurance &amp; Finance Portal</title>
+  <title>ProtectV - Premium Insurance &amp; Finance Portal</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
@@ -13,881 +13,1067 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        navy: { 50:'#f0f3f9', 100:'#dce3f0', 200:'#b8c7e1', 300:'#8da5ce', 400:'#6283ba', 500:'#3d62a0', 600:'#0B1D51', 700:'#091842', 800:'#061233', 900:'#030a1f' },
-        gold: { 50:'#fefcf3', 100:'#fdf6db', 200:'#fbedb7', 300:'#f7df85', 400:'#D4A843', 500:'#C4962F', 600:'#a67b1e', 700:'#7d5c16', 800:'#54400f', 900:'#2b2108' }
+        navy: { 50:'#f0f3f9', 100:'#d9e0f0', 200:'#b3c1e0', 300:'#8da2d1', 400:'#6783c1', 500:'#1a2744', 600:'#0f1b33', 700:'#0b1426', 800:'#070d1a', 900:'#03060d' },
+        gold: { 50:'#fefcf3', 100:'#fdf6d8', 200:'#fbedb1', 300:'#f9e38a', 400:'#f7da63', 500:'#d4a843', 600:'#b8912e', 700:'#9c7a1f', 800:'#806310', 900:'#644c01' }
       }
     }
   }
 }
 </script>
   <style>
-html, body { height: 100%; margin: 0; font-family: 'DM Sans', sans-serif; }
-.font-display { font-family: 'Playfair Display', serif; }
-.app-wrapper { height: 100%; overflow-y: auto; overflow-x: hidden; width: 100%; }
-.gold-gradient { background: linear-gradient(135deg, #D4A843 0%, #f7df85 50%, #D4A843 100%); }
-.navy-gradient { background: linear-gradient(135deg, #0B1D51 0%, #162d6b 50%, #0B1D51 100%); }
-.hero-bg {
-  background: linear-gradient(135deg, #0B1D51 0%, #0d2460 30%, #122e70 60%, #0B1D51 100%);
-  position: relative;
-}
-.hero-bg::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.05) 0%, transparent 50%);
-}
-.card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-.card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(11,29,81,0.15); }
-.shimmer { background: linear-gradient(90deg, transparent 0%, rgba(212,168,67,0.1) 50%, transparent 100%); background-size: 200% 100%; animation: shimmer 3s infinite; }
-@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+html, body { height: 100%; margin: 0; }
+body { font-family: 'DM Sans', sans-serif; }
+h1,h2,h3,h4,h5,h6,.heading-font { font-family: 'Playfair Display', serif; }
+
+.gold-gradient { background: linear-gradient(135deg, #d4a843 0%, #f7da63 50%, #d4a843 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.navy-bg { background: linear-gradient(135deg, #0f1b33 0%, #1a2744 40%, #0f1b33 100%); }
+.card-glow { transition: all 0.4s cubic-bezier(.4,0,.2,1); }
+.card-glow:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(212,168,67,0.15); }
+.btn-gold { background: linear-gradient(135deg, #d4a843, #f7da63, #d4a843); background-size: 200% 200%; animation: shimmer 3s ease infinite; color: #0f1b33; font-weight: 700; }
+@keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-.fade-up { animation: fadeUp 0.7s ease forwards; }
-.fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
-.fade-up-d2 { animation-delay: 0.2s; opacity: 0; }
-.fade-up-d3 { animation-delay: 0.3s; opacity: 0; }
-.fade-up-d4 { animation-delay: 0.4s; opacity: 0; }
-.tab-btn.active { background: #D4A843; color: #0B1D51; font-weight: 700; }
+.animate-up { animation: fadeUp 0.7s ease forwards; }
+.animate-up-d1 { animation: fadeUp 0.7s 0.1s ease forwards; opacity:0; }
+.animate-up-d2 { animation: fadeUp 0.7s 0.2s ease forwards; opacity:0; }
+.animate-up-d3 { animation: fadeUp 0.7s 0.3s ease forwards; opacity:0; }
+.tab-active { border-bottom: 3px solid #d4a843; color: #d4a843; }
 .tab-btn { transition: all 0.3s ease; }
-.nav-link { position: relative; }
-.nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#D4A843; transition:width 0.3s ease; }
-.nav-link:hover::after { width:100%; }
-.blog-card { overflow: hidden; }
-.blog-card img { transition: transform 0.5s ease; }
-.blog-card:hover img { transform: scale(1.05); }
-.toast-msg { animation: fadeUp 0.4s ease forwards; }
+.tab-btn:hover { color: #d4a843; }
+.blog-card { transition: all 0.4s ease; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+.company-card { transition: all 0.3s ease; }
+.company-card:hover { border-color: #d4a843; transform: scale(1.02); }
+
+.page-section { display: none; }
+.page-section.active { display: block; }
+
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0B1D51; }
-::-webkit-scrollbar-thumb { background: #D4A843; border-radius: 4px; }
-.mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
-.mobile-menu.open { transform: translateX(0); }
+::-webkit-scrollbar-track { background: #0f1b33; }
+::-webkit-scrollbar-thumb { background: #d4a843; border-radius: 4px; }
+
+.shield-logo { display: inline-flex; align-items: center; gap: 8px; }
+.shield-icon { width: 40px; height: 40px; position: relative; }
+.shield-icon svg { width: 100%; height: 100%; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.modal-overlay.show { opacity: 1; pointer-events: all; }
+.modal-content { background: #1a2744; border: 1px solid rgba(212,168,67,0.3); border-radius: 12px; padding: 32px; max-width: 500px; width: 90%; transform: scale(0.9); transition: transform 0.3s ease; }
+.modal-overlay.show .modal-content { transform: scale(1); }
+
+.toast { position: fixed; bottom: 24px; right: 24px; background: #1a2744; border: 1px solid #d4a843; color: #f7da63; padding: 16px 24px; border-radius: 8px; z-index: 1100; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+.toast.show { transform: translateY(0); opacity: 1; }
 </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full">
-  <div class="app-wrapper" id="app-wrapper"><!-- NAVIGATION -->
-   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-600/95 backdrop-blur-md border-b border-gold-400/20" id="main-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex items-center justify-between h-16 sm:h-20"><!-- Logo --> <a href="#" onclick="navigateTo('home');return false;" class="flex items-center gap-2 sm:gap-3 group">
-       <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-lg bg-navy-700 flex items-center justify-center shadow-lg group-hover:shadow-navy-700/40 transition-shadow border border-gold-400/30"><i data-lucide="shield" class="w-6 h-6 sm:w-7 sm:h-7 text-gold-400"></i>
-       </div>
-       <div><span class="font-display text-lg sm:text-2xl font-bold text-white tracking-tight">Protect<span class="text-gold-400">V</span></span> <span class="hidden sm:block text-[10px] text-gold-300/70 tracking-widest uppercase -mt-1">Premium Insurance</span>
-       </div></a> <!-- Desktop Nav -->
-      <div class="hidden lg:flex items-center gap-1"><button onclick="navigateTo('home')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Home</button> <button onclick="navigateTo('about')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">About</button> <button onclick="navigateTo('insurance-types')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Insurance Types</button> <button onclick="navigateTo('companies')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Companies</button> <button onclick="navigateTo('blogs')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Blogs</button> <button onclick="navigateTo('calculator')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Calculator</button> <button onclick="navigateTo('contact')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Contact</button> <button onclick="navigateTo('disclaimer')" class="nav-link px-3 py-2 text-sm text-white/90 hover:text-gold-400 transition-colors">Legal</button> <button onclick="navigateTo('contact')" class="ml-3 px-5 py-2.5 gold-gradient text-navy-600 font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-gold-400/20 transition-all">Get Quote</button>
-      </div><!-- Mobile Toggle --> <button onclick="toggleMobileMenu()" class="lg:hidden text-white p-2" id="menu-toggle"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
-     </div>
+ <body class="h-full bg-navy-600 text-gray-200 overflow-auto">
+  <div id="app-wrapper" class="w-full min-h-full">
+   <!-- NOTICE BANNER -->
+   <div class="w-full bg-navy-800 border-b border-gold-500/20 py-2 px-4 text-center text-xs md:text-sm text-gray-400">
+    <i data-lucide="info" class="inline w-3 h-3 mr-1 text-gold-500"></i> ProtectV is an independent informational website for insurance education and provider discovery. We do not issue policies, provide regulated financial advice, or act as an insurance carrier.
+   </div><!-- NAVBAR -->
+   <header id="navbar" class="w-full navy-bg border-b border-gold-500/20 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+     <a href="#" onclick="navigateTo('home');return false;" class="shield-logo">
+      <div class="shield-icon">
+       <svg viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="8" fill="#0f1b33" /><path d="M20 2L4 10V20C4 30 20 38 20 38C20 38 36 30 36 20V10L20 2Z" fill="none" stroke="#d4a843" stroke-width="2.5" /><path d="M20 8L10 13V20C10 26 20 32 20 32C20 32 30 26 30 20V13L20 8Z" fill="#d4a843" opacity="0.15" />
+       </svg>
+      </div><span id="logo-text" class="text-xl md:text-2xl font-bold heading-font text-white">Protect<span class="text-gold-500">V</span></span> </a>
+     <nav class="hidden lg:flex items-center gap-1">
+      <button onclick="navigateTo('home')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">Home</button> <button onclick="navigateTo('about')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">About Us</button> <button onclick="navigateTo('insurance')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">Insurance Types</button> <button onclick="navigateTo('companies')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">Provider Directory</button> <button onclick="navigateTo('blogs')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">Blogs</button> <button onclick="navigateTo('calculator')" class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover:text-gold-400 rounded transition-colors">Calculator</button> <button onclick="navigateTo('contact')" class="btn-gold px-5 py-2 rounded-lg text-sm">Contact Us</button>
+     </nav><button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden text-gold-500 p-2"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
     </div><!-- Mobile Menu -->
-    <div class="mobile-menu fixed top-0 right-0 h-full w-72 bg-navy-700 shadow-2xl z-50 p-6" id="mobile-menu"><button onclick="toggleMobileMenu()" class="absolute top-4 right-4 text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-     <div class="mt-12 flex flex-col gap-2"><button onclick="navigateTo('home');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Home</button> <button onclick="navigateTo('about');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">About</button> <button onclick="navigateTo('insurance-types');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Insurance Types</button> <button onclick="navigateTo('companies');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Companies</button> <button onclick="navigateTo('blogs');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Blogs</button> <button onclick="navigateTo('calculator');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Calculator</button> <button onclick="navigateTo('contact');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Contact</button> <button onclick="navigateTo('disclaimer');toggleMobileMenu()" class="text-left px-4 py-3 text-white/90 hover:text-gold-400 hover:bg-navy-600 rounded-lg transition-all">Legal</button> <button onclick="navigateTo('contact');toggleMobileMenu()" class="mt-4 px-5 py-3 gold-gradient text-navy-600 font-bold text-sm rounded-lg text-center">Get Quote</button>
+    <div id="mobile-menu" class="hidden lg:hidden w-full border-t border-gold-500/20 navy-bg">
+     <div class="px-4 py-3 flex flex-col gap-1">
+      <button onclick="navigateTo('home');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">Home</button> <button onclick="navigateTo('about');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">About Us</button> <button onclick="navigateTo('insurance');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">Insurance Types</button> <button onclick="navigateTo('companies');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">Provider Directory</button> <button onclick="navigateTo('blogs');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">Blogs</button> <button onclick="navigateTo('calculator');toggleMobileMenu()" class="text-left px-4 py-3 text-gray-300 hover:text-gold-400 hover:bg-navy-700/50 rounded-lg transition-colors">Calculator</button> <button onclick="navigateTo('contact');toggleMobileMenu()" class="btn-gold text-center px-4 py-3 rounded-lg mt-2">Contact Us</button>
      </div>
     </div>
-   </nav><!-- ==================== HOME PAGE ==================== -->
-   <div id="page-home"><!-- HERO SECTION -->
-    <header class="hero-bg pt-20 sm:pt-24 pb-16 sm:pb-24 relative overflow-hidden">
-     <div class="absolute top-20 right-10 w-64 h-64 bg-gold-400/5 rounded-full blur-3xl"></div>
-     <div class="absolute bottom-10 left-10 w-96 h-96 bg-gold-400/3 rounded-full blur-3xl"></div>
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-       <div>
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-400/30 bg-gold-400/10 mb-6 fade-up"><span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span> <span class="text-gold-300 text-xs font-medium tracking-wider uppercase">Educational Insurance Guide</span>
-        </div>
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 fade-up fade-up-d1" id="hero-title">Insurance Education &amp; <span class="text-gold-400">Provider Discovery</span></h1>
-        <p class="text-lg text-white/70 leading-relaxed mb-8 max-w-xl fade-up fade-up-d2" id="hero-subtitle">Learn about insurance coverage options, compare providers, and make informed decisions. Access guides, tools, and direct links to official insurance companies.</p>
-        <div class="flex flex-wrap gap-4 fade-up fade-up-d3"><button onclick="navigateTo('calculator')" class="px-8 py-4 gold-gradient text-navy-600 font-bold rounded-lg hover:shadow-xl hover:shadow-gold-400/20 transition-all flex items-center gap-2"> <i data-lucide="calculator" class="w-5 h-5"></i> Find Your Plan </button> <button onclick="navigateTo('companies')" class="px-8 py-4 border-2 border-gold-400/40 text-white font-semibold rounded-lg hover:bg-gold-400/10 transition-all flex items-center gap-2"> <i data-lucide="building-2" class="w-5 h-5"></i> Browse Companies </button>
-        </div>
-        <div class="flex items-center gap-8 mt-10 fade-up fade-up-d4">
-         <div>
-          <span class="text-3xl font-bold text-gold-400">10+</span><span class="block text-xs text-white/50 mt-1">Insurance Categories</span>
-         </div>
-         <div class="w-px h-10 bg-white/10"></div>
-         <div>
-          <span class="text-3xl font-bold text-gold-400">25+</span><span class="block text-xs text-white/50 mt-1">Educational Guides</span>
-         </div>
-         <div class="w-px h-10 bg-white/10"></div>
-         <div>
-          <span class="text-3xl font-bold text-gold-400">100%</span><span class="block text-xs text-white/50 mt-1">Free to Use</span>
-         </div>
-        </div>
+   </header><!-- ============ HOME PAGE ============ -->
+   <div id="page-home" class="page-section active">
+    <!-- HERO -->
+    <section class="w-full relative overflow-hidden" style="background: linear-gradient(160deg, #070d1a 0%, #0f1b33 30%, #1a2744 60%, #0f1b33 100%);">
+     <div class="absolute inset-0" style="background: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.04) 0%, transparent 50%);"></div>
+     <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+       <div class="animate-up inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 rounded-full px-4 py-1.5 mb-6">
+        <i data-lucide="shield" class="w-4 h-4 text-gold-500"></i> <span class="text-gold-400 text-sm font-medium">Independent Insurance Education Platform</span>
        </div>
-       <div class="hidden lg:block">
-        <div class="relative">
-         <div class="w-full aspect-square max-w-md mx-auto rounded-3xl navy-gradient border border-gold-400/20 p-8 flex flex-col items-center justify-center shimmer">
-          <svg width="120" height="120" viewbox="0 0 120 120" fill="none"><path d="M60 10L15 35v30c0 27.75 19.2 53.7 45 60 25.8-6.3 45-32.25 45-60V35L60 10z" fill="none" stroke="#D4A843" stroke-width="2" opacity="0.3" /> <path d="M60 20L25 40v25c0 22 15.36 42.96 35 48 19.64-5.04 35-26 35-48V40L60 20z" fill="none" stroke="#D4A843" stroke-width="1.5" opacity="0.5" /> <path d="M50 60l7 7 13-14" stroke="#D4A843" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <p class="text-gold-400 font-display text-xl font-bold mt-6">Your Insurance Guide</p>
-          <p class="text-white/40 text-sm mt-2 text-center">Independent educational resource for informed decisions</p>
-         </div>
-         <div class="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center"><i data-lucide="info" class="w-8 h-8 text-gold-400"></i>
-         </div>
-         <div class="absolute -bottom-4 -left-4 w-28 h-16 rounded-2xl bg-navy-700 border border-gold-400/20 flex items-center justify-center gap-2 px-3"><i data-lucide="bookmark-check" class="w-5 h-5 text-gold-400"></i>
-          <div>
-           <span class="text-white text-xs font-bold">Always Free</span><span class="block text-white/40 text-[10px]">No Cost to Use</span>
-          </div>
-         </div>
-        </div>
+       <h1 id="heroTitle" class="animate-up-d1 heading-font text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">Premium Insurance &amp;<br><span class="gold-gradient">Finance Portal</span></h1>
+       <p id="heroSubtitle" class="animate-up-d2 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">Your trusted guide to understanding insurance. Explore educational resources, compare coverage options, and discover top insurance providers — all in one place.</p>
+       <div class="animate-up-d3 flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="navigateTo('insurance')" class="btn-gold px-8 py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/20 transition-all"> <i data-lucide="compass" class="w-5 h-5"></i> Explore Insurance Types </button> <button onclick="navigateTo('calculator')" class="px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gold-500/40 text-gold-400 hover:bg-gold-500/10 transition-all flex items-center justify-center gap-2"> <i data-lucide="calculator" class="w-5 h-5"></i> Find Your Coverage </button>
        </div>
       </div>
      </div>
-    </header><!-- INSURANCE TYPES TABS -->
-    <section class="py-16 sm:py-24 bg-white" id="section-insurance-types">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12"><span class="text-gold-500 font-semibold text-sm tracking-wider uppercase">Comprehensive Coverage</span>
-       <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-600 mt-3">Insurance Types</h2>
-       <div class="w-20 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
-      </div><!-- Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10" id="insurance-tabs"><button onclick="switchInsuranceTab('market')" class="tab-btn active px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-tab="market">Market Insurance</button> <button onclick="switchInsuranceTab('financial')" class="tab-btn px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-tab="financial">Financial Insurance</button> <button onclick="switchInsuranceTab('specialty')" class="tab-btn px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-tab="specialty">Specialty Insurance</button>
-      </div>
-      <div id="insurance-content"></div>
+     <div class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to top, #0f1b33, transparent);"></div>
+    </section><!-- QUICK INTRO -->
+    <section class="w-full navy-bg py-12 px-4">
+     <div class="max-w-5xl mx-auto text-center">
+      <p class="text-gray-300 text-base md:text-lg leading-relaxed">Secure your future with our educational dual-market platform, bridging the gap between <strong class="text-gold-400">Market Insurance</strong> (Home, Auto, Health) and <strong class="text-gold-400">Financial Insurance</strong> (Life, Wealth, Annuities). Dive into expert guides, use our coverage calculator, and access direct links to official provider websites for a seamless enrollment experience.</p>
      </div>
-    </section><!-- ABOUT SECTION -->
-    <section class="py-16 sm:py-24 hero-bg relative" id="section-about">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-       <div><span class="text-gold-400 font-semibold text-sm tracking-wider uppercase">About ProtectV</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3 mb-6" id="about-heading">Premium Insurance &amp; Finance Portal</h2>
-        <p class="text-white/70 leading-relaxed mb-6">Secure your future with our elite dual-market platform, seamlessly bridging the gap between <strong class="text-gold-400">Market Insurance</strong> (Home, Auto, Health) and <strong class="text-gold-400">Financial Insurance</strong> (Life, Wealth, Annuities).</p>
-        <p class="text-white/70 leading-relaxed mb-6">Dive into our library of 25+ expert blogs to discover the best coverage for your lifestyle and gain instant 'Apply Now' access to 25+ industry leaders: UnitedHealth, Allianz, AXA, Prudential, MetLife, State Farm, Geico, Progressive, Allstate, Liberty Mutual, Travelers, Chubb, AIG, Zurich, Nationwide, New York Life, MassMutual, Northwestern Mutual, Manulife, Sun Life, AFLAC, Humana, Cigna, Aviva, and Fidelity.</p>
-        <p class="text-white/70 leading-relaxed mb-8">Click any provider to be redirected instantly to their official site for a fast, secure, and premium enrollment experience.</p>
-        <div class="grid grid-cols-2 gap-4">
-         <div class="bg-white/5 border border-gold-400/20 rounded-xl p-4">
-          <i data-lucide="book-open" class="w-6 h-6 text-gold-400 mb-2"></i>
-          <h4 class="text-white font-bold text-sm">Expert Content</h4>
-          <p class="text-white/50 text-xs mt-1">25+ in-depth blog articles</p>
-         </div>
-         <div class="bg-white/5 border border-gold-400/20 rounded-xl p-4">
-          <i data-lucide="calculator" class="w-6 h-6 text-gold-400 mb-2"></i>
-          <h4 class="text-white font-bold text-sm">Smart Calculator</h4>
-          <p class="text-white/50 text-xs mt-1">Find your perfect plan</p>
-         </div>
-         <div class="bg-white/5 border border-gold-400/20 rounded-xl p-4">
-          <i data-lucide="link-2" class="w-6 h-6 text-gold-400 mb-2"></i>
-          <h4 class="text-white font-bold text-sm">Provider Links</h4>
-          <p class="text-white/50 text-xs mt-1">Direct to official websites</p>
-         </div>
-         <div class="bg-white/5 border border-gold-400/20 rounded-xl p-4">
-          <i data-lucide="info" class="w-6 h-6 text-gold-400 mb-2"></i>
-          <h4 class="text-white font-bold text-sm">Free Information</h4>
-          <p class="text-white/50 text-xs mt-1">No ads or hidden charges</p>
-         </div>
+    </section><!-- FEATURES BAR -->
+    <section class="w-full border-y border-gold-500/10 py-8 px-4" style="background: rgba(212,168,67,0.03);">
+     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="flex flex-col items-center gap-2">
+       <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center"><i data-lucide="book-open" class="w-6 h-6 text-gold-500"></i>
+       </div><span class="text-sm text-gray-300 font-medium">Educational Guides</span> <span class="text-xs text-gray-500">Expert insurance articles</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+       <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center"><i data-lucide="search" class="w-6 h-6 text-gold-500"></i>
+       </div><span class="text-sm text-gray-300 font-medium">Compare Options</span> <span class="text-xs text-gray-500">Side-by-side coverage info</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+       <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center"><i data-lucide="building" class="w-6 h-6 text-gold-500"></i>
+       </div><span class="text-sm text-gray-300 font-medium">Provider Directory</span> <span class="text-xs text-gray-500">Links to official sites</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+       <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center"><i data-lucide="calculator" class="w-6 h-6 text-gold-500"></i>
+       </div><span class="text-sm text-gray-300 font-medium">Coverage Calculator</span> <span class="text-xs text-gray-500">Find what fits your needs</span>
+      </div>
+     </div>
+    </section><!-- INSURANCE CATEGORIES PREVIEW -->
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="heading-font text-3xl md:text-4xl font-bold text-white mb-3">Insurance <span class="gold-gradient">Categories</span></h2>
+       <p class="text-gray-400 max-w-xl mx-auto">Understanding the different types of insurance is the first step toward making informed decisions about your coverage needs.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="home-categories">
+      </div>
+      <div class="text-center mt-8">
+       <button onclick="navigateTo('insurance')" class="px-6 py-3 border border-gold-500/40 text-gold-400 rounded-xl hover:bg-gold-500/10 transition-all text-sm font-semibold"> View All Insurance Types <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i> </button>
+      </div>
+     </div>
+    </section><!-- POPULAR PROVIDERS PREVIEW -->
+    <section class="w-full py-16 px-4" style="background: rgba(212,168,67,0.02);">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="heading-font text-3xl md:text-4xl font-bold text-white mb-3">Explore Insurance <span class="gold-gradient">Brands</span></h2>
+       <p class="text-gray-400 max-w-xl mx-auto">Discover well-known insurance providers. Click any provider to visit their official website for detailed plan information and enrollment.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3" id="home-companies"></div>
+      <div class="text-center mt-8">
+       <button onclick="navigateTo('companies')" class="px-6 py-3 border border-gold-500/40 text-gold-400 rounded-xl hover:bg-gold-500/10 transition-all text-sm font-semibold"> View Full Directory <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i> </button>
+      </div>
+     </div>
+    </section><!-- LATEST BLOGS PREVIEW -->
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="heading-font text-3xl md:text-4xl font-bold text-white mb-3">Latest Insurance <span class="gold-gradient">Guides</span></h2>
+       <p class="text-gray-400 max-w-xl mx-auto">Expert articles to help you understand different coverage options and make informed decisions about your insurance needs.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="home-blogs"></div>
+      <div class="text-center mt-8">
+       <button onclick="navigateTo('blogs')" class="px-6 py-3 border border-gold-500/40 text-gold-400 rounded-xl hover:bg-gold-500/10 transition-all text-sm font-semibold"> Read All Guides <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i> </button>
+      </div>
+     </div>
+    </section><!-- CTA -->
+    <section class="w-full py-16 px-4" style="background: linear-gradient(135deg, rgba(212,168,67,0.08), rgba(212,168,67,0.02));">
+     <div class="max-w-3xl mx-auto text-center">
+      <h2 class="heading-font text-3xl md:text-4xl font-bold text-white mb-4">Not sure what coverage you need?</h2>
+      <p class="text-gray-400 mb-8 text-lg">Use our insurance calculator to find personalized recommendations based on your lifestyle, budget, and priorities.</p><button onclick="navigateTo('calculator')" class="btn-gold px-8 py-4 rounded-xl text-lg font-bold inline-flex items-center gap-2 hover:shadow-lg hover:shadow-gold-500/20 transition-all"> <i data-lucide="calculator" class="w-5 h-5"></i> Try the Calculator </button>
+     </div>
+    </section>
+   </div><!-- ============ ABOUT PAGE ============ -->
+   <div id="page-about" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 id="aboutTitle" class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">About <span class="gold-gradient">ProtectV</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-6"></div>
+      </div>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10 mb-8">
+       <h2 class="heading-font text-2xl font-bold text-white mb-4">Our Mission</h2>
+       <p class="text-gray-300 leading-relaxed mb-6">ProtectV is an independent informational platform dedicated to insurance education and provider discovery. We believe that understanding your insurance options is the foundation for making smart financial decisions. Our goal is to simplify the complex world of insurance by providing clear, accessible, and unbiased educational content.</p>
+       <p class="text-gray-300 leading-relaxed mb-6">We bridge the gap between Market Insurance — covering everyday essentials like Home, Auto, and Health — and Financial Insurance, including Life, Wealth Management, and Annuities. Through expert-written guides, an intuitive coverage calculator, and a comprehensive provider directory, we empower individuals and families to explore their options with confidence.</p>
+       <p class="text-gray-300 leading-relaxed">Every "Apply Now" link in our provider directory leads to the official website of the respective insurance company, ensuring you always deal directly with licensed, regulated providers. ProtectV does not sell insurance products, issue policies, or provide regulated financial advice.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+       <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6">
+        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><i data-lucide="target" class="w-6 h-6 text-gold-500"></i>
         </div>
+        <h3 class="heading-font text-xl font-bold text-white mb-3">What We Do</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+         <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>Provide educational insurance guides and articles</li>
+         <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>Help you compare coverage options across categories</li>
+         <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>Offer an interactive calculator for coverage recommendations</li>
+         <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>Link directly to official insurance provider websites</li>
+         <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>Maintain an independent, unbiased informational platform</li>
+        </ul>
        </div>
-       <div class="flex justify-center">
-        <div class="relative w-full max-w-sm">
-         <div class="rounded-3xl bg-navy-700 border border-gold-400/20 p-8 text-center">
-          <div class="w-24 h-24 rounded-full gold-gradient mx-auto flex items-center justify-center mb-6">
-           <svg width="48" height="48" viewbox="0 0 24 24" fill="none">
-            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="#0B1D51" /><text x="12" y="16" text-anchor="middle" fill="#D4A843" font-size="8" font-weight="bold" font-family="serif">
-             V
-            </text>
-           </svg>
-          </div>
-          <h3 class="font-display text-2xl font-bold text-white mb-3">Why ProtectV?</h3>
-          <p class="text-white/60 text-sm leading-relaxed">We're not just another comparison site. We're your dedicated insurance concierge — curating only the best for your peace of mind.</p>
-          <div class="mt-6 space-y-3 text-left">
-           <div class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="w-5 h-5 text-gold-400 flex-shrink-0"></i><span class="text-white/80 text-sm">Verified &amp; licensed providers</span>
-           </div>
-           <div class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="w-5 h-5 text-gold-400 flex-shrink-0"></i><span class="text-white/80 text-sm">Zero hidden fees or commissions</span>
-           </div>
-           <div class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="w-5 h-5 text-gold-400 flex-shrink-0"></i><span class="text-white/80 text-sm">Unbiased expert recommendations</span>
-           </div>
-           <div class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="w-5 h-5 text-gold-400 flex-shrink-0"></i><span class="text-white/80 text-sm">Direct apply — no middlemen</span>
-           </div>
-          </div>
-         </div>
+       <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6">
+        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><i data-lucide="shield-off" class="w-6 h-6 text-gold-500"></i>
         </div>
+        <h3 class="heading-font text-xl font-bold text-white mb-3">What We Don't Do</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+         <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>We do not sell or issue insurance policies</li>
+         <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>We do not provide regulated financial advice</li>
+         <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>We are not an insurance carrier or broker</li>
+         <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>We do not handle claims or policy management</li>
+         <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>We do not guarantee any rates or coverage terms</li>
+        </ul>
        </div>
       </div>
-     </div>
-    </section><!-- COMPANIES -->
-    <section class="py-16 sm:py-24 bg-navy-50" id="section-companies">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12"><span class="text-gold-500 font-semibold text-sm tracking-wider uppercase">Provider Directory</span>
-       <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-600 mt-3">Explore Insurance Brands</h2>
-       <div class="w-20 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
-       <p class="text-navy-400 mt-4 max-w-2xl mx-auto">Browse major insurance companies. Click "Learn More" to visit their official websites for information, quotes, and applications.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="companies-grid"></div>
-     </div>
-    </section><!-- BLOGS -->
-    <section class="py-16 sm:py-24 bg-white" id="section-blogs">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12"><span class="text-gold-500 font-semibold text-sm tracking-wider uppercase">Knowledge Hub</span>
-       <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-600 mt-3">25+ Expert Insurance Blogs</h2>
-       <div class="w-20 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
-      </div><!-- Blog Type Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10" id="blog-tabs"></div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="blogs-grid"></div>
-     </div>
-    </section><!-- CALCULATOR -->
-    <section class="py-16 sm:py-24 hero-bg relative" id="section-calculator">
-     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center mb-12"><span class="text-gold-400 font-semibold text-sm tracking-wider uppercase">Smart Tool</span>
-       <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3">Insurance Needs Calculator</h2>
-       <div class="w-20 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
-       <p class="text-white/60 mt-4">Answer a few questions to find the coverage that best fits your lifestyle.</p>
-      </div>
-      <div class="bg-navy-700 border border-gold-400/20 rounded-2xl p-6 sm:p-10">
-       <form id="calc-form" onsubmit="event.preventDefault();calculateNeeds()">
-        <div class="grid sm:grid-cols-2 gap-6">
-         <div><label for="calc-age" class="block text-white/80 text-sm font-medium mb-2">Your Age</label> <select id="calc-age" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select age range</option> <option value="18-25">18–25</option> <option value="26-35">26–35</option> <option value="36-45">36–45</option> <option value="46-55">46–55</option> <option value="56-65">56–65</option> <option value="65+">65+</option> </select>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10">
+       <h2 class="heading-font text-2xl font-bold text-white mb-4">Our Values</h2>
+       <div class="grid sm:grid-cols-3 gap-6">
+        <div class="text-center">
+         <div class="w-14 h-14 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="eye" class="w-6 h-6 text-gold-500"></i>
          </div>
-         <div><label for="calc-income" class="block text-white/80 text-sm font-medium mb-2">Annual Income</label> <select id="calc-income" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select income range</option> <option value="under30k">Under $30,000</option> <option value="30k-60k">$30,000–$60,000</option> <option value="60k-100k">$60,000–$100,000</option> <option value="100k-200k">$100,000–$200,000</option> <option value="200k+">$200,000+</option> </select>
-         </div>
-         <div><label for="calc-family" class="block text-white/80 text-sm font-medium mb-2">Family Status</label> <select id="calc-family" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select status</option> <option value="single">Single</option> <option value="married">Married, No Kids</option> <option value="family">Married with Kids</option> <option value="retired">Retired</option> </select>
-         </div>
-         <div><label for="calc-assets" class="block text-white/80 text-sm font-medium mb-2">Key Assets</label> <select id="calc-assets" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select primary asset</option> <option value="renter">Renter</option> <option value="homeowner">Homeowner</option> <option value="vehicle">Vehicle Owner</option> <option value="both">Home + Vehicle</option> <option value="business">Business Owner</option> </select>
-         </div>
-         <div><label for="calc-priority" class="block text-white/80 text-sm font-medium mb-2">Top Priority</label> <select id="calc-priority" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select priority</option> <option value="savings">Lowest Cost</option> <option value="coverage">Maximum Coverage</option> <option value="family-protection">Family Protection</option> <option value="wealth">Wealth Building</option> <option value="retirement">Retirement Planning</option> </select>
-         </div>
-         <div><label for="calc-health" class="block text-white/80 text-sm font-medium mb-2">Health Status</label> <select id="calc-health" class="w-full bg-navy-800 border border-gold-400/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400"> <option value="">Select health</option> <option value="excellent">Excellent</option> <option value="good">Good</option> <option value="fair">Fair</option> <option value="chronic">Chronic Conditions</option> </select>
-         </div>
-        </div><button type="submit" class="mt-8 w-full py-4 gold-gradient text-navy-600 font-bold text-lg rounded-lg hover:shadow-xl hover:shadow-gold-400/20 transition-all flex items-center justify-center gap-2"> <i data-lucide="sparkles" class="w-5 h-5"></i> Get My Personalized Recommendations </button>
-       </form>
-       <div id="calc-results" class="hidden mt-8"></div>
-      </div>
-     </div>
-    </section><!-- CONTACT -->
-    <section class="py-16 sm:py-24 bg-white" id="section-contact">
-     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12"><span class="text-gold-500 font-semibold text-sm tracking-wider uppercase">Get In Touch</span>
-       <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-600 mt-3">Contact Us</h2>
-       <div class="w-20 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
-       <p class="text-navy-400 mt-4">Have a question? Fill out the form below and our team will get back to you within 24 hours.</p>
-      </div>
-      <div class="bg-navy-50 rounded-2xl p-6 sm:p-10 border border-navy-100">
-       <form id="contact-form" onsubmit="event.preventDefault();submitContact()">
-        <div class="grid sm:grid-cols-2 gap-6">
-         <div><label for="contact-name" class="block text-navy-600 text-sm font-medium mb-2">Full Name</label> <input type="text" id="contact-name" placeholder="John Doe" required class="w-full bg-white border border-navy-200 rounded-lg px-4 py-3 text-navy-600 text-sm focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20">
-         </div>
-         <div><label for="contact-email" class="block text-navy-600 text-sm font-medium mb-2">Email Address</label> <input type="email" id="contact-email" placeholder="john@example.com" required class="w-full bg-white border border-navy-200 rounded-lg px-4 py-3 text-navy-600 text-sm focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20">
-         </div>
+         <h4 class="text-white font-semibold mb-2">Transparency</h4>
+         <p class="text-gray-400 text-sm">We clearly disclose our role as an informational platform and always direct you to official sources.</p>
         </div>
-        <div class="mt-6"><label for="contact-subject" class="block text-navy-600 text-sm font-medium mb-2">Subject</label> <select id="contact-subject" required class="w-full bg-white border border-navy-200 rounded-lg px-4 py-3 text-navy-600 text-sm focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20"> <option value="">Select a topic</option> <option value="general">General Inquiry</option> <option value="quote">Request a Quote</option> <option value="claims">Claims Assistance</option> <option value="partnership">Partnership Inquiry</option> <option value="feedback">Feedback</option> </select>
+        <div class="text-center">
+         <div class="w-14 h-14 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="graduation-cap" class="w-6 h-6 text-gold-500"></i>
+         </div>
+         <h4 class="text-white font-semibold mb-2">Education First</h4>
+         <p class="text-gray-400 text-sm">We prioritize helping you understand your options before making any decisions about coverage.</p>
         </div>
-        <div class="mt-6"><label for="contact-message" class="block text-navy-600 text-sm font-medium mb-2">Your Message</label> <textarea id="contact-message" rows="5" placeholder="Tell us how we can help..." required class="w-full bg-white border border-navy-200 rounded-lg px-4 py-3 text-navy-600 text-sm focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 resize-none"></textarea>
-        </div><button type="submit" id="contact-submit" class="mt-6 w-full py-4 gold-gradient text-navy-600 font-bold text-lg rounded-lg hover:shadow-xl hover:shadow-gold-400/20 transition-all flex items-center justify-center gap-2"> <i data-lucide="send" class="w-5 h-5"></i> Send Message </button>
-       </form>
-       <div id="contact-success" class="hidden mt-6 bg-green-50 border border-green-200 rounded-xl p-6 text-center"><i data-lucide="check-circle" class="w-10 h-10 text-green-500 mx-auto"></i>
-        <h3 class="text-green-800 font-bold text-lg mt-3">Message Sent!</h3>
-        <p class="text-green-600 text-sm mt-1">Thank you for reaching out. We'll respond within 24 hours.</p>
+        <div class="text-center">
+         <div class="w-14 h-14 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="scale" class="w-6 h-6 text-gold-500"></i>
+         </div>
+         <h4 class="text-white font-semibold mb-2">Independence</h4>
+         <p class="text-gray-400 text-sm">Our content is designed to be unbiased and informational, helping you explore all available options.</p>
+        </div>
        </div>
       </div>
      </div>
     </section>
-   </div><!-- end page-home --> <!-- ==================== DISCLAIMER PAGE ==================== -->
-   <div id="page-disclaimer" class="hidden">
-    <div class="pt-24 pb-16 bg-white">
-     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-gold-500 hover:text-gold-600 mb-8 transition-colors"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home</button>
-      <h1 class="font-display text-3xl sm:text-4xl font-bold text-navy-600 mb-8">Legal Information</h1><!-- Disclaimer Tabs -->
-      <div class="flex flex-wrap gap-2 mb-8"><button onclick="switchLegalTab('disclaimer')" class="legal-tab active px-5 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-legal="disclaimer">Disclaimer</button> <button onclick="switchLegalTab('terms')" class="legal-tab px-5 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-legal="terms">Terms of Service</button> <button onclick="switchLegalTab('privacy')" class="legal-tab px-5 py-2.5 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-legal="privacy">Privacy Policy</button>
-      </div><!-- Disclaimer Content -->
-      <div id="legal-disclaimer" class="legal-content prose max-w-none">
-       <div class="bg-navy-50 border border-navy-100 rounded-2xl p-6 sm:p-8 space-y-6">
-        <h2 class="font-display text-2xl font-bold text-navy-600">Disclaimer</h2>
-        <p class="text-navy-500 leading-relaxed">The information provided on ProtectV is for general informational purposes only. All information on the site is provided in good faith; however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.</p>
-        <p class="text-navy-500 leading-relaxed"><strong class="text-navy-600">Not Financial Advice:</strong> Nothing on ProtectV constitutes professional financial, insurance, legal, or tax advice. You should consult with a licensed professional before making any insurance or financial decisions.</p>
-        <p class="text-navy-500 leading-relaxed"><strong class="text-navy-600">Third-Party Links:</strong> Our site contains links to third-party insurance providers. These links are provided for convenience and do not signify endorsement. ProtectV is not responsible for the content, policies, or practices of any third-party websites.</p>
-        <p class="text-navy-500 leading-relaxed"><strong class="text-navy-600">Affiliate Disclosure:</strong> Some links on this website may be affiliate links, meaning we may receive a small commission at no additional cost to you if you click through and make a purchase or sign up for a service.</p>
-        <p class="text-navy-500 leading-relaxed"><strong class="text-navy-600">Accuracy of Information:</strong> While we strive to keep the information current, insurance rates, policies, and company details are subject to change without notice. Always verify details directly with the insurance provider.</p>
-        <p class="text-navy-500 leading-relaxed"><strong class="text-navy-600">Calculator Results:</strong> The insurance needs calculator provides general guidance based on user inputs and is not a substitute for professional assessment. Actual insurance needs may vary based on individual circumstances.</p>
-       </div>
-      </div><!-- Terms Content -->
-      <div id="legal-terms" class="legal-content hidden prose max-w-none">
-       <div class="bg-navy-50 border border-navy-100 rounded-2xl p-6 sm:p-8 space-y-6">
-        <h2 class="font-display text-2xl font-bold text-navy-600">Terms of Service</h2>
-        <p class="text-navy-400 text-sm">Last Updated: January 2026</p>
-        <p class="text-navy-500 leading-relaxed">By accessing and using ProtectV ("the Website"), you agree to comply with and be bound by the following terms and conditions.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600 pt-2">1. Acceptance of Terms</h3>
-        <p class="text-navy-500 leading-relaxed">By using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the website.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">2. Use of Website</h3>
-        <p class="text-navy-500 leading-relaxed">You agree to use ProtectV only for lawful purposes and in a way that does not infringe on the rights of others. You may not use our services for any illegal or unauthorized purposes.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">3. Intellectual Property</h3>
-        <p class="text-navy-500 leading-relaxed">All content on ProtectV, including text, graphics, logos, and software, is the property of ProtectV and is protected by copyright and intellectual property laws.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">4. Limitation of Liability</h3>
-        <p class="text-navy-500 leading-relaxed">ProtectV shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the website.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">5. Third-Party Services</h3>
-        <p class="text-navy-500 leading-relaxed">When you click "Apply Now" or visit any third-party insurance provider through our links, you are subject to that provider's own terms and conditions. ProtectV is not a party to any transaction between you and a third-party provider.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">6. Modifications</h3>
-        <p class="text-navy-500 leading-relaxed">ProtectV reserves the right to modify these terms at any time. Continued use of the website after changes constitutes acceptance of the new terms.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">7. Governing Law</h3>
-        <p class="text-navy-500 leading-relaxed">These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.</p>
-       </div>
-      </div><!-- Privacy Content -->
-      <div id="legal-privacy" class="legal-content hidden prose max-w-none">
-       <div class="bg-navy-50 border border-navy-100 rounded-2xl p-6 sm:p-8 space-y-6">
-        <h2 class="font-display text-2xl font-bold text-navy-600">Privacy Policy</h2>
-        <p class="text-navy-400 text-sm">Last Updated: January 2026</p>
-        <p class="text-navy-500 leading-relaxed">ProtectV ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600 pt-2">1. Information We Collect</h3>
-        <p class="text-navy-500 leading-relaxed">We may collect information you voluntarily provide through our contact form, including your name, email address, and message content. We also collect anonymous usage data to improve our services.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">2. How We Use Information</h3>
-        <p class="text-navy-500 leading-relaxed">Your information is used solely to respond to your inquiries, improve our website, and send relevant communications (if you opt in). We do not sell, trade, or rent your personal information to third parties.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">3. Data Security</h3>
-        <p class="text-navy-500 leading-relaxed">We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">4. Cookies</h3>
-        <p class="text-navy-500 leading-relaxed">ProtectV may use cookies to enhance your browsing experience. You can control cookie preferences through your browser settings.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">5. Third-Party Links</h3>
-        <p class="text-navy-500 leading-relaxed">Our website contains links to external sites. We are not responsible for the privacy practices of other websites. We encourage you to review the privacy policies of any site you visit.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">6. Your Rights</h3>
-        <p class="text-navy-500 leading-relaxed">You have the right to access, correct, or delete your personal information. Contact us through our contact form to exercise these rights.</p>
-        <h3 class="font-display text-xl font-bold text-navy-600">7. Changes to This Policy</h3>
-        <p class="text-navy-500 leading-relaxed">We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new policy on this page.</p>
+   </div><!-- ============ INSURANCE TYPES PAGE ============ -->
+   <div id="page-insurance" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">Insurance <span class="gold-gradient">Types</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
+       <p class="text-gray-400 max-w-2xl mx-auto">Explore the major categories of insurance to understand what each type covers, who it's for, and how it protects your financial wellbeing.</p>
+      </div><!-- Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10 border-b border-gold-500/10 pb-4">
+       <button onclick="filterInsurance('all')" class="tab-btn tab-active px-4 py-2 text-sm font-medium rounded-t-lg" data-tab="all">All Types</button> <button onclick="filterInsurance('market')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-tab="market">Market Insurance</button> <button onclick="filterInsurance('financial')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-tab="financial">Financial Insurance</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="insurance-grid"></div>
+     </div>
+    </section>
+   </div><!-- ============ COMPANIES PAGE ============ -->
+   <div id="page-companies" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">Provider <span class="gold-gradient">Directory</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
+       <p class="text-gray-400 max-w-2xl mx-auto">Explore well-known insurance brands. Each "Visit Official Site" button links directly to the provider's official website where you can learn about plans, get quotes, and enroll.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-2 mb-10 border-b border-gold-500/10 pb-4">
+       <button onclick="filterCompanies('all')" class="tab-btn tab-active px-4 py-2 text-sm font-medium rounded-t-lg" data-ctab="all">All Providers</button> <button onclick="filterCompanies('health')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-ctab="health">Health</button> <button onclick="filterCompanies('auto')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-ctab="auto">Auto</button> <button onclick="filterCompanies('life')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-ctab="life">Life</button> <button onclick="filterCompanies('home')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-ctab="home">Home</button> <button onclick="filterCompanies('multi')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-ctab="multi">Multi-Line</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="companies-grid"></div>
+     </div>
+    </section>
+   </div><!-- ============ BLOGS PAGE ============ -->
+   <div id="page-blogs" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">Insurance <span class="gold-gradient">Guides &amp; Blogs</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
+       <p class="text-gray-400 max-w-2xl mx-auto">Expert articles covering every major insurance type. Learn about coverage options, common mistakes to avoid, and how to choose the right protection for your needs.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-2 mb-10 border-b border-gold-500/10 pb-4" id="blog-tabs"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="blogs-grid"></div>
+     </div>
+    </section>
+   </div><!-- ============ CALCULATOR PAGE ============ -->
+   <div id="page-calculator" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">Coverage <span class="gold-gradient">Calculator</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
+       <p class="text-gray-400 max-w-2xl mx-auto">Answer a few simple questions about your lifestyle and priorities, and we'll recommend the insurance types that may best fit your needs. This tool is for educational purposes only.</p>
+      </div>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10" id="calc-form">
+       <form onsubmit="calculateCoverage(event)" class="space-y-8">
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">1. What is your age range?</label>
+         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="age" value="18-25" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            18-25
+           </div></label> <label class="cursor-pointer"><input type="radio" name="age" value="26-35" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            26-35
+           </div></label> <label class="cursor-pointer"><input type="radio" name="age" value="36-50" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            36-50
+           </div></label> <label class="cursor-pointer"><input type="radio" name="age" value="50+" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            50+
+           </div></label>
+         </div>
+        </div>
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">2. Do you own a home?</label>
+         <div class="grid grid-cols-3 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="home" value="own" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Yes, I own
+           </div></label> <label class="cursor-pointer"><input type="radio" name="home" value="rent" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            I rent
+           </div></label> <label class="cursor-pointer"><input type="radio" name="home" value="none" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Neither
+           </div></label>
+         </div>
+        </div>
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">3. Do you own a vehicle?</label>
+         <div class="grid grid-cols-2 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="vehicle" value="yes" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Yes
+           </div></label> <label class="cursor-pointer"><input type="radio" name="vehicle" value="no" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            No
+           </div></label>
+         </div>
+        </div>
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">4. Do you have dependents (spouse, children)?</label>
+         <div class="grid grid-cols-2 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="dependents" value="yes" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Yes
+           </div></label> <label class="cursor-pointer"><input type="radio" name="dependents" value="no" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            No
+           </div></label>
+         </div>
+        </div>
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">5. Monthly insurance budget?</label>
+         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="budget" value="low" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Under $100
+           </div></label> <label class="cursor-pointer"><input type="radio" name="budget" value="mid" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            $100-$300
+           </div></label> <label class="cursor-pointer"><input type="radio" name="budget" value="high" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            $300-$500
+           </div></label> <label class="cursor-pointer"><input type="radio" name="budget" value="premium" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            $500+
+           </div></label>
+         </div>
+        </div>
+        <div>
+         <label class="block text-white font-semibold mb-3 text-lg">6. What's your top priority?</label>
+         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <label class="cursor-pointer"><input type="radio" name="priority" value="health" class="hidden peer" required>
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Health &amp; Medical
+           </div></label> <label class="cursor-pointer"><input type="radio" name="priority" value="family" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Family Protection
+           </div></label> <label class="cursor-pointer"><input type="radio" name="priority" value="assets" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Asset Protection
+           </div></label> <label class="cursor-pointer"><input type="radio" name="priority" value="retirement" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Retirement Planning
+           </div></label> <label class="cursor-pointer"><input type="radio" name="priority" value="business" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Business Coverage
+           </div></label> <label class="cursor-pointer"><input type="radio" name="priority" value="travel" class="hidden peer">
+           <div class="peer-checked:border-gold-500 peer-checked:bg-gold-500/10 border border-gray-600 rounded-xl p-3 text-center text-gray-300 hover:border-gold-500/50 transition-all text-sm">
+            Travel &amp; Adventure
+           </div></label>
+         </div>
+        </div><button type="submit" class="btn-gold w-full py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/20 transition-all"> <i data-lucide="zap" class="w-5 h-5"></i> Get My Recommendations </button>
+       </form>
+      </div>
+      <div id="calc-results" class="hidden mt-8"></div>
+      <p class="text-center text-xs text-gray-500 mt-6"><i data-lucide="info" class="w-3 h-3 inline mr-1"></i> This calculator provides general educational guidance only. Actual premiums vary by provider, location, and individual factors. Always consult with a licensed insurance professional for personalized advice.</p>
+     </div>
+    </section>
+   </div><!-- ============ CONTACT PAGE ============ -->
+   <div id="page-contact" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+       <h1 class="heading-font text-4xl md:text-5xl font-bold text-white mb-4">Contact <span class="gold-gradient">Us</span></h1>
+       <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
+       <p class="text-gray-400 max-w-xl mx-auto">Have questions or feedback? We'd love to hear from you. Fill out the form below and our team will get back to you as soon as possible.</p>
+      </div>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10">
+       <form onsubmit="submitContactForm(event)" class="space-y-6" id="contact-form">
+        <div class="grid md:grid-cols-2 gap-6">
+         <div>
+          <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label> <input type="text" id="contact-name" name="name" required placeholder="Your name" class="w-full bg-navy-700/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/30 transition-all">
+         </div>
+         <div>
+          <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label> <input type="email" id="contact-email" name="email" required placeholder="your@email.com" class="w-full bg-navy-700/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/30 transition-all">
+         </div>
+        </div>
+        <div>
+         <label for="contact-subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label> <select id="contact-subject" name="subject" required class="w-full bg-navy-700/50 border border-gray-600 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/30 transition-all"> <option value="" class="bg-navy-600">Select a topic</option> <option value="general" class="bg-navy-600">General Inquiry</option> <option value="feedback" class="bg-navy-600">Website Feedback</option> <option value="suggestion" class="bg-navy-600">Content Suggestion</option> <option value="partnership" class="bg-navy-600">Partnership Inquiry</option> <option value="bug" class="bg-navy-600">Report an Issue</option> </select>
+        </div>
+        <div>
+         <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-2">Message</label> <textarea id="contact-message" name="message" required rows="5" placeholder="How can we help you?" class="w-full bg-navy-700/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/30 transition-all resize-none"></textarea>
+        </div><button type="submit" id="contact-submit-btn" class="btn-gold w-full py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/20 transition-all"> <i data-lucide="send" class="w-5 h-5"></i> Send Message </button>
+       </form>
+       <div id="contact-success" class="hidden text-center py-8">
+        <div class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+         <i data-lucide="check-circle" class="w-8 h-8 text-green-400"></i>
+        </div>
+        <h3 class="heading-font text-2xl font-bold text-white mb-2">Message Sent!</h3>
+        <p class="text-gray-400 mb-6">Thank you for reaching out. We'll get back to you as soon as possible.</p><button onclick="resetContactForm()" class="px-6 py-3 border border-gold-500/40 text-gold-400 rounded-xl hover:bg-gold-500/10 transition-all text-sm font-semibold">Send Another Message</button>
        </div>
       </div>
+     </div>
+    </section>
+   </div><!-- ============ DISCLAIMER PAGE ============ -->
+   <div id="page-disclaimer" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-4xl mx-auto">
+      <h1 class="heading-font text-4xl font-bold text-white mb-8 text-center">Disclaimer</h1>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10 space-y-6 text-gray-300 leading-relaxed">
+       <p><strong class="text-white">General Information Only:</strong> ProtectV provides content for informational and educational purposes only. The information on this website is not intended to be, and should not be construed as, financial, legal, or insurance advice. Always consult with qualified, licensed professionals before making any insurance or financial decisions.</p>
+       <p><strong class="text-white">No Insurance Products Sold:</strong> ProtectV does not sell, solicit, or negotiate insurance policies. We do not act as an insurance agent, broker, or carrier. All "Apply Now" and "Visit Official Site" links redirect to third-party websites operated by independent insurance companies. We have no control over the content, privacy policies, or practices of these third-party sites.</p>
+       <p><strong class="text-white">Third-Party Links:</strong> Our provider directory contains links to external websites for your convenience. ProtectV does not endorse, guarantee, or assume responsibility for any products, services, or information offered by third-party providers. We encourage users to review the terms, conditions, and privacy policies of any third-party site before providing personal information or purchasing any products.</p>
+       <p><strong class="text-white">Accuracy of Information:</strong> While we strive to provide accurate and up-to-date information, ProtectV makes no warranties or representations regarding the accuracy, completeness, or reliability of any content on this website. Insurance products, rates, coverage terms, and provider offerings are subject to change without notice. Always verify current information directly with the insurance provider.</p>
+       <p><strong class="text-white">Calculator Disclaimer:</strong> The coverage calculator on this website is an educational tool designed to provide general guidance. Results are based on limited inputs and do not constitute professional insurance advice. Actual premiums, coverage options, and eligibility vary based on individual circumstances, location, health status, and other factors. The estimated budget ranges shown are approximate and for illustrative purposes only.</p>
+       <p><strong class="text-white">No Professional Relationship:</strong> Use of this website does not create any professional, advisory, fiduciary, or other relationship between you and ProtectV. We are an independent informational platform and do not represent any insurance company or financial institution.</p>
+       <p><strong class="text-white">Limitation of Liability:</strong> ProtectV shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of this website, reliance on any information provided herein, or any actions taken based on the content of this website.</p>
+      </div>
+     </div>
+    </section>
+   </div><!-- ============ TERMS & POLICY PAGE ============ -->
+   <div id="page-terms" class="page-section">
+    <section class="w-full navy-bg py-16 px-4">
+     <div class="max-w-4xl mx-auto">
+      <h1 class="heading-font text-4xl font-bold text-white mb-8 text-center">Terms of Use &amp; Privacy Policy</h1>
+      <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10 space-y-8 text-gray-300 leading-relaxed">
+       <div>
+        <h2 class="heading-font text-2xl font-bold text-white mb-4">Terms of Use</h2>
+        <p class="mb-4"><strong class="text-white">Acceptance of Terms:</strong> By accessing and using ProtectV, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use this website.</p>
+        <p class="mb-4"><strong class="text-white">Use of Content:</strong> All content on ProtectV, including text, graphics, logos, and design elements, is the intellectual property of ProtectV and is protected by applicable copyright laws. You may not reproduce, distribute, or create derivative works from this content without prior written permission.</p>
+        <p class="mb-4"><strong class="text-white">User Conduct:</strong> You agree to use this website only for lawful purposes and in a manner that does not infringe upon the rights of others. You agree not to attempt to gain unauthorized access to any part of this website or its systems.</p>
+        <p class="mb-4"><strong class="text-white">External Links:</strong> ProtectV contains links to third-party websites. These links are provided for informational purposes and do not imply endorsement. We are not responsible for the content or availability of linked sites.</p>
+        <p><strong class="text-white">Modifications:</strong> ProtectV reserves the right to modify these terms at any time without prior notice. Continued use of the website constitutes acceptance of any changes.</p>
+       </div>
+       <div class="border-t border-gold-500/10 pt-8">
+        <h2 class="heading-font text-2xl font-bold text-white mb-4">Privacy Policy</h2>
+        <p class="mb-4"><strong class="text-white">Information Collection:</strong> ProtectV may collect non-personal information such as browser type, operating system, and pages visited for analytical purposes. If you submit a contact form, we collect only the information you voluntarily provide (name, email, message).</p>
+        <p class="mb-4"><strong class="text-white">Use of Information:</strong> Any information collected is used solely to improve website functionality, respond to inquiries, and enhance user experience. We do not sell, trade, or share personal information with third parties for marketing purposes.</p>
+        <p class="mb-4"><strong class="text-white">Cookies:</strong> This website may use cookies to enhance user experience and track website analytics. You can manage cookie preferences through your browser settings.</p>
+        <p class="mb-4"><strong class="text-white">Third-Party Services:</strong> When you click external links to insurance provider websites, you are subject to those providers' privacy policies. We encourage you to review their privacy practices before submitting any personal information.</p>
+        <p><strong class="text-white">Contact:</strong> If you have questions about this privacy policy or wish to request removal of any information you've submitted through our contact form, please use our contact page to reach us.</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- ============ BLOG DETAIL MODAL ============ -->
+   <div id="blog-modal" class="modal-overlay" onclick="if(event.target===this)closeBlogModal()">
+    <div class="modal-content max-h-[80%] overflow-y-auto">
+     <div class="flex justify-between items-start mb-4">
+      <h2 id="blog-modal-title" class="heading-font text-2xl font-bold text-white pr-4"></h2><button onclick="closeBlogModal()" class="text-gray-400 hover:text-white flex-shrink-0"><i data-lucide="x" class="w-6 h-6"></i></button>
+     </div>
+     <div class="flex items-center gap-3 mb-4">
+      <span id="blog-modal-cat" class="bg-gold-500/10 text-gold-400 px-3 py-1 rounded-full text-xs font-medium"></span> <span id="blog-modal-read" class="text-gray-500 text-xs"></span>
+     </div>
+     <div id="blog-modal-content" class="text-gray-300 leading-relaxed space-y-4"></div>
+     <div class="mt-6 pt-4 border-t border-gold-500/10">
+      <button onclick="closeBlogModal()" class="btn-gold px-6 py-2 rounded-lg text-sm font-semibold">Close Article</button>
      </div>
     </div>
-   </div><!-- FOOTER -->
-   <footer class="bg-navy-800 border-t border-gold-400/10 pt-16 pb-8" id="main-footer">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"><!-- About -->
+   </div><!-- TOAST -->
+   <div id="toast" class="toast"></div><!-- ============ FOOTER ============ -->
+   <footer class="w-full border-t border-gold-500/10" style="background: linear-gradient(to bottom, #0f1b33, #070d1a);">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+       <a href="#" onclick="navigateTo('home');return false;" class="shield-logo mb-4 inline-flex">
+        <div class="shield-icon" style="width:32px;height:32px;">
+         <svg viewbox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#0f1b33" /><path d="M20 2L4 10V20C4 30 20 38 20 38C20 38 36 30 36 20V10L20 2Z" fill="none" stroke="#d4a843" stroke-width="2.5" /><path d="M20 8L10 13V20C10 26 20 32 20 32C20 32 30 26 30 20V13L20 8Z" fill="#d4a843" opacity="0.15" />
+         </svg>
+        </div><span class="text-lg font-bold heading-font text-white">Protect<span class="text-gold-500">V</span></span> </a>
+       <p class="text-gray-500 text-sm mt-3 leading-relaxed">Independent insurance education platform. Helping you explore and understand your coverage options.</p>
+      </div>
       <div>
-       <div class="flex items-center gap-2 mb-4">
-        <div class="w-9 h-9 rounded-lg bg-navy-700 flex items-center justify-center border border-gold-400/30"><i data-lucide="shield" class="w-5 h-5 text-gold-400"></i>
-        </div><span class="font-display text-xl font-bold text-white">Protect<span class="text-gold-400">V</span></span>
-       </div>
-       <p class="text-white/50 text-sm leading-relaxed">ProtectV is a premium insurance and finance portal dedicated to helping you find the best coverage for every stage of life. We connect you with 25+ top-rated insurance companies and provide expert guidance through our comprehensive blog library.</p>
-      </div><!-- Insurance -->
-      <div>
-       <h4 class="text-gold-400 font-bold text-sm uppercase tracking-wider mb-4">Insurance Types</h4>
+       <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
        <ul class="space-y-2">
-        <li><button onclick="navigateTo('insurance-types')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Health Insurance</button></li>
-        <li><button onclick="navigateTo('insurance-types')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Auto Insurance</button></li>
-        <li><button onclick="navigateTo('insurance-types')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Home Insurance</button></li>
-        <li><button onclick="navigateTo('insurance-types')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Life Insurance</button></li>
-        <li><button onclick="navigateTo('insurance-types')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Annuities</button></li>
+        <li><button onclick="navigateTo('home')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Home</button></li>
+        <li><button onclick="navigateTo('about')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">About Us</button></li>
+        <li><button onclick="navigateTo('insurance')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Insurance Types</button></li>
+        <li><button onclick="navigateTo('calculator')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Calculator</button></li>
        </ul>
-      </div><!-- Companies -->
+      </div>
       <div>
-       <h4 class="text-gold-400 font-bold text-sm uppercase tracking-wider mb-4">Top Companies</h4>
+       <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Resources</h4>
        <ul class="space-y-2">
-        <li><a href="https://www.uhc.com" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-gold-400 text-sm transition-colors">UnitedHealth</a></li>
-        <li><a href="https://www.allianz.com" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Allianz</a></li>
-        <li><a href="https://www.axa.com" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-gold-400 text-sm transition-colors">AXA</a></li>
-        <li><a href="https://www.statefarm.com" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-gold-400 text-sm transition-colors">State Farm</a></li>
-        <li><a href="https://www.metlife.com" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-gold-400 text-sm transition-colors">MetLife</a></li>
+        <li><button onclick="navigateTo('blogs')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Insurance Guides</button></li>
+        <li><button onclick="navigateTo('companies')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Provider Directory</button></li>
+        <li><button onclick="navigateTo('contact')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Contact Us</button></li>
        </ul>
-      </div><!-- Quick Links -->
+      </div>
       <div>
-       <h4 class="text-gold-400 font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+       <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Legal</h4>
        <ul class="space-y-2">
-        <li><button onclick="navigateTo('home')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Home</button></li>
-        <li><button onclick="navigateTo('about')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">About Us</button></li>
-        <li><button onclick="navigateTo('calculator')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Calculator</button></li>
-        <li><button onclick="navigateTo('blogs')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Blogs</button></li>
-        <li><button onclick="navigateTo('contact')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Contact</button></li>
-        <li><button onclick="navigateTo('disclaimer')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Disclaimer</button></li>
-        <li><button onclick="switchLegalTab('terms');navigateTo('disclaimer')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Terms of Service</button></li>
-        <li><button onclick="switchLegalTab('privacy');navigateTo('disclaimer')" class="text-white/50 hover:text-gold-400 text-sm transition-colors">Privacy Policy</button></li>
+        <li><button onclick="navigateTo('disclaimer')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Disclaimer</button></li>
+        <li><button onclick="navigateTo('terms')" class="text-gray-400 text-sm hover:text-gold-400 transition-colors">Terms &amp; Privacy</button></li>
        </ul>
       </div>
      </div>
-     <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-white/40 text-sm">© 2026 ProtectV. All rights reserved.</p>
-      <p class="text-white/30 text-xs text-center sm:text-right max-w-md">ProtectV is an informational portal. We are not an insurance provider. Please consult a licensed professional before making insurance decisions.</p>
+     <div class="border-t border-gold-500/10 pt-6 text-center">
+      <p class="text-gray-500 text-xs mb-2">ProtectV is an independent informational website. We do not sell insurance or provide financial advice.</p>
+      <p class="text-gray-600 text-xs">© 2026 ProtectV. All rights reserved.</p>
      </div>
     </div>
    </footer>
-  </div><!-- end app-wrapper -->
+  </div>
   <script>
-// ==================== DATA ====================
+// ========== DATA ==========
+const insuranceTypes = [
+  { id:'health', name:'Health Insurance', icon:'heart-pulse', cat:'market', desc:'Covers medical expenses including doctor visits, hospital stays, prescriptions, and preventive care. Essential for managing healthcare costs and protecting against unexpected medical bills.', color:'#ef4444' },
+  { id:'auto', name:'Auto Insurance', icon:'car', cat:'market', desc:'Protects against financial loss from vehicle accidents, theft, or damage. Required by law in most states, auto insurance covers liability, collision, comprehensive, and uninsured motorist protection.', color:'#3b82f6' },
+  { id:'home', name:'Home Insurance', icon:'home', cat:'market', desc:'Protects your home and personal property against damage from fires, storms, theft, and other covered perils. Also provides liability coverage for accidents on your property.', color:'#22c55e' },
+  { id:'renters', name:'Renters Insurance', icon:'building', cat:'market', desc:'Covers personal belongings in a rented property against theft, fire, and other disasters. Also provides liability protection and additional living expenses if your rental becomes uninhabitable.', color:'#a855f7' },
+  { id:'life', name:'Life Insurance', icon:'heart', cat:'financial', desc:'Provides financial protection to your beneficiaries after your passing. Options include term life for affordable temporary coverage and whole life for permanent protection with cash value.', color:'#f59e0b' },
+  { id:'disability', name:'Disability Insurance', icon:'accessibility', cat:'market', desc:'Replaces a portion of your income if you become unable to work due to illness or injury. Available as short-term or long-term coverage to protect your earning potential.', color:'#06b6d4' },
+  { id:'umbrella', name:'Umbrella Insurance', icon:'umbrella', cat:'market', desc:'Provides additional liability protection beyond the limits of your home, auto, or other insurance policies. Essential for protecting personal assets against large lawsuits.', color:'#8b5cf6' },
+  { id:'travel', name:'Travel Insurance', icon:'plane', cat:'market', desc:'Covers unexpected events during travel including trip cancellation, medical emergencies abroad, lost luggage, and travel delays. Especially important for international trips.', color:'#14b8a6' },
+  { id:'pet', name:'Pet Insurance', icon:'paw-print', cat:'market', desc:'Helps cover veterinary costs for your pets including accidents, illnesses, and sometimes routine care. Can significantly reduce out-of-pocket expenses for pet healthcare.', color:'#f97316' },
+  { id:'business', name:'Business Insurance', icon:'briefcase', cat:'market', desc:'Protects businesses against financial losses from lawsuits, property damage, employee injuries, and other risks. Includes general liability, property, and professional liability coverage.', color:'#6366f1' },
+  { id:'dental', name:'Dental Insurance', icon:'smile', cat:'market', desc:'Covers dental care expenses including routine cleanings, fillings, crowns, and sometimes orthodontics. Helps manage the cost of maintaining good oral health.', color:'#ec4899' },
+  { id:'vision', name:'Vision Insurance', icon:'eye', cat:'market', desc:'Covers eye care expenses including annual exams, prescription glasses, contact lenses, and sometimes discounts on corrective procedures like LASIK.', color:'#0ea5e9' },
+  { id:'flood', name:'Flood Insurance', icon:'cloud-rain', cat:'market', desc:'Provides coverage for property damage caused by flooding, which is typically excluded from standard home insurance policies. Required for properties in high-risk flood zones.', color:'#2563eb' },
+  { id:'earthquake', name:'Earthquake Insurance', icon:'mountain', cat:'market', desc:'Covers damage to your home and belongings from earthquakes, which are not covered by standard homeowners insurance. Essential in seismically active regions.', color:'#b45309' },
+  { id:'annuity', name:'Annuities', icon:'trending-up', cat:'financial', desc:'Financial products that provide a guaranteed income stream, typically used for retirement planning. Options include fixed, variable, and indexed annuities with different risk profiles.', color:'#059669' },
+  { id:'wealth', name:'Wealth Management', icon:'landmark', cat:'financial', desc:'Comprehensive financial services including investment management, estate planning, tax strategies, and retirement planning. Designed to grow and protect your financial assets.', color:'#7c3aed' },
+  { id:'longterm', name:'Long-Term Care', icon:'bed', cat:'financial', desc:'Covers the cost of long-term care services including nursing homes, assisted living, adult daycare, and in-home care. Important for planning against the high costs of extended care.', color:'#dc2626' },
+  { id:'cyber', name:'Cyber Insurance', icon:'shield', cat:'market', desc:'Protects businesses and individuals against losses from cyber incidents including data breaches, ransomware attacks, and identity theft. Increasingly important in our digital age.', color:'#4f46e5' },
+  { id:'marine', name:'Marine Insurance', icon:'anchor', cat:'market', desc:'Covers boats, yachts, and watercraft against damage, theft, and liability. Also available for commercial shipping to protect cargo and vessels during transit.', color:'#0284c7' },
+  { id:'liability', name:'Professional Liability', icon:'file-check', cat:'market', desc:'Also known as Errors & Omissions (E&O) insurance, it protects professionals against claims of negligence, malpractice, or inadequate work. Essential for doctors, lawyers, consultants, and other professionals.', color:'#9333ea' },
+  { id:'crop', name:'Crop Insurance', icon:'sprout', cat:'market', desc:'Protects farmers against loss of crops due to natural disasters, weather events, or price declines. Federally subsidized programs are available to make coverage affordable.', color:'#16a34a' },
+  { id:'workers', name:'Workers Compensation', icon:'hard-hat', cat:'market', desc:'Required insurance that covers medical expenses and lost wages for employees injured on the job. Protects both employees and employers from the financial impact of workplace injuries.', color:'#ea580c' },
+  { id:'gap', name:'GAP Insurance', icon:'car', cat:'market', desc:'Covers the difference between what you owe on your car loan and the car\'s actual cash value if it\'s totaled or stolen. Particularly useful for new vehicles that depreciate quickly.', color:'#475569' },
+  { id:'mortgage', name:'Mortgage Insurance', icon:'key', cat:'financial', desc:'Required when your down payment is less than 20% of the home\'s purchase price. Protects the lender if you default on your mortgage, but can be removed once equity reaches 20%.', color:'#b91c1c' },
+  { id:'critical', name:'Critical Illness', icon:'activity', cat:'financial', desc:'Pays a lump sum if you are diagnosed with a covered critical illness such as cancer, heart attack, or stroke. The payment can be used for any purpose including medical bills, living expenses, or recovery costs.', color:'#e11d48' },
+];
+
 const companies = [
-  { name:'UnitedHealth', url:'https://www.uhc.com', type:'Health', rating:'A+' },
-  { name:'Allianz', url:'https://www.allianz.com', type:'Multi-line', rating:'A+' },
-  { name:'AXA', url:'https://www.axa.com', type:'Multi-line', rating:'A+' },
-  { name:'Prudential', url:'https://www.prudential.com', type:'Life/Financial', rating:'A+' },
-  { name:'MetLife', url:'https://www.metlife.com', type:'Life/Benefits', rating:'A+' },
-  { name:'State Farm', url:'https://www.statefarm.com', type:'Auto/Home', rating:'A++' },
-  { name:'Geico', url:'https://www.geico.com', type:'Auto', rating:'A++' },
-  { name:'Progressive', url:'https://www.progressive.com', type:'Auto', rating:'A+' },
-  { name:'Allstate', url:'https://www.allstate.com', type:'Auto/Home', rating:'A+' },
-  { name:'Liberty Mutual', url:'https://www.libertymutual.com', type:'Auto/Home', rating:'A' },
-  { name:'Travelers', url:'https://www.travelers.com', type:'Commercial', rating:'A++' },
-  { name:'Chubb', url:'https://www.chubb.com', type:'Premium', rating:'A++' },
-  { name:'AIG', url:'https://www.aig.com', type:'Commercial', rating:'A' },
-  { name:'Zurich', url:'https://www.zurich.com', type:'Commercial', rating:'A+' },
-  { name:'Nationwide', url:'https://www.nationwide.com', type:'Multi-line', rating:'A+' },
-  { name:'New York Life', url:'https://www.newyorklife.com', type:'Life', rating:'A++' },
-  { name:'MassMutual', url:'https://www.massmutual.com', type:'Life/Financial', rating:'A++' },
-  { name:'Northwestern Mutual', url:'https://www.northwesternmutual.com', type:'Life/Financial', rating:'A++' },
-  { name:'Manulife', url:'https://www.manulife.com', type:'Life/Financial', rating:'A+' },
-  { name:'Sun Life', url:'https://www.sunlife.com', type:'Life/Health', rating:'A+' },
-  { name:'AFLAC', url:'https://www.aflac.com', type:'Supplemental', rating:'A+' },
-  { name:'Humana', url:'https://www.humana.com', type:'Health', rating:'A' },
-  { name:'Cigna', url:'https://www.cigna.com', type:'Health', rating:'A' },
-  { name:'Aviva', url:'https://www.aviva.com', type:'Multi-line', rating:'A+' },
-  { name:'Fidelity', url:'https://www.fidelity.com', type:'Financial', rating:'A+' }
+  { name:'UnitedHealth Group', url:'https://www.uhc.com', cat:['health'], desc:'One of the largest health insurance providers in the U.S.' },
+  { name:'Allianz', url:'https://www.allianz.com', cat:['multi','travel'], desc:'Global insurance and financial services company.' },
+  { name:'AXA', url:'https://www.axa.com', cat:['multi','life'], desc:'Worldwide insurance, investment, and retirement leader.' },
+  { name:'Prudential', url:'https://www.prudential.com', cat:['life','multi'], desc:'Financial services offering insurance, retirement, and investments.' },
+  { name:'MetLife', url:'https://www.metlife.com', cat:['life','multi'], desc:'Leading global provider of insurance and employee benefits.' },
+  { name:'State Farm', url:'https://www.statefarm.com', cat:['auto','home','multi'], desc:'Largest auto insurer and major home insurer in the U.S.' },
+  { name:'Geico', url:'https://www.geico.com', cat:['auto'], desc:'Well-known for competitive auto insurance rates.' },
+  { name:'Progressive', url:'https://www.progressive.com', cat:['auto','home'], desc:'Major auto and home insurance provider with comparison tools.' },
+  { name:'Allstate', url:'https://www.allstate.com', cat:['auto','home','multi'], desc:'National provider of home, auto, and life insurance.' },
+  { name:'Liberty Mutual', url:'https://www.libertymutual.com', cat:['auto','home','multi'], desc:'Global insurer offering personal and commercial coverage.' },
+  { name:'Travelers', url:'https://www.travelers.com', cat:['home','auto','multi'], desc:'Property and casualty insurance for personal and business needs.' },
+  { name:'Chubb', url:'https://www.chubb.com', cat:['home','multi'], desc:'World\'s largest publicly traded P&C insurance company.' },
+  { name:'AIG', url:'https://www.aig.com', cat:['multi','life'], desc:'International insurance organization providing diverse coverage.' },
+  { name:'Zurich', url:'https://www.zurich.com', cat:['multi'], desc:'Multi-line insurer serving individuals and businesses globally.' },
+  { name:'Nationwide', url:'https://www.nationwide.com', cat:['auto','home','life','multi'], desc:'Full-range financial services and insurance provider.' },
+  { name:'New York Life', url:'https://www.newyorklife.com', cat:['life'], desc:'Largest mutual life insurance company in the U.S.' },
+  { name:'MassMutual', url:'https://www.massmutual.com', cat:['life'], desc:'Major mutual life insurance company offering financial planning.' },
+  { name:'Northwestern Mutual', url:'https://www.northwesternmutual.com', cat:['life','multi'], desc:'Financial planning and insurance company with personalized service.' },
+  { name:'Manulife', url:'https://www.manulife.com', cat:['life','multi'], desc:'Canadian multinational insurance and financial services firm.' },
+  { name:'Sun Life', url:'https://www.sunlife.com', cat:['life','multi'], desc:'International financial services offering insurance and investments.' },
+  { name:'AFLAC', url:'https://www.aflac.com', cat:['health','life'], desc:'Supplemental insurance leader known for accident and illness coverage.' },
+  { name:'Humana', url:'https://www.humana.com', cat:['health'], desc:'Major health insurance company specializing in Medicare plans.' },
+  { name:'Cigna', url:'https://www.cigna.com', cat:['health'], desc:'Global health service company offering medical, dental, and more.' },
+  { name:'Aviva', url:'https://www.aviva.com', cat:['life','multi'], desc:'Leading UK-based insurer providing life and general insurance.' },
+  { name:'Fidelity', url:'https://www.fidelity.com', cat:['life','multi'], desc:'Financial services offering investments, retirement, and insurance.' },
 ];
 
-const insuranceTypes = {
-  market: [
-    { icon:'heart-pulse', title:'Health Insurance', desc:'Cover medical expenses, hospital stays, and preventive care for you and your family.' },
-    { icon:'car', title:'Auto Insurance', desc:'Protect your vehicle against accidents, theft, and liability with comprehensive coverage.' },
-    { icon:'home', title:'Home Insurance', desc:'Safeguard your home and belongings from natural disasters, theft, and liability.' },
-    { icon:'umbrella', title:'Renters Insurance', desc:'Protect personal property and gain liability coverage as a renter.' },
-    { icon:'ship', title:'Marine Insurance', desc:'Coverage for cargo, vessels, and maritime liabilities.' },
-    { icon:'plane', title:'Travel Insurance', desc:'Trip cancellation, medical emergencies, and lost luggage protection.' }
-  ],
-  financial: [
-    { icon:'shield', title:'Life Insurance', desc:'Provide financial security for your loved ones with term or whole life coverage.' },
-    { icon:'landmark', title:'Wealth Insurance', desc:'Protect and grow your wealth with investment-linked insurance products.' },
-    { icon:'trending-up', title:'Annuities', desc:'Guaranteed income streams for retirement security and peace of mind.' },
-    { icon:'wallet', title:'Disability Insurance', desc:'Replace income if illness or injury prevents you from working.' },
-    { icon:'piggy-bank', title:'Long-Term Care', desc:'Cover nursing home, assisted living, and in-home care costs.' },
-    { icon:'briefcase', title:'Key Person Insurance', desc:'Protect your business against the loss of essential employees.' }
-  ],
-  specialty: [
-    { icon:'dog', title:'Pet Insurance', desc:'Cover veterinary bills, surgeries, and medications for your pets.' },
-    { icon:'monitor', title:'Cyber Insurance', desc:'Protect against data breaches, cyber attacks, and digital liability.' },
-    { icon:'hard-hat', title:'Workers Comp', desc:'Cover employee injuries and illnesses that occur on the job.' },
-    { icon:'file-text', title:'E&O Insurance', desc:'Professional liability protection for service-based businesses.' },
-    { icon:'zap', title:'Event Insurance', desc:'Protect special events from cancellation, weather, and liability.' },
-    { icon:'globe', title:'Expatriate Insurance', desc:'Comprehensive coverage for individuals living and working abroad.' }
-  ]
-};
-
-const blogData = [
-  { type:'Health', title:'Understanding Health Insurance Deductibles', excerpt:'Learn how deductibles work and how to choose the right amount for your budget and health needs.', read:'5 min' },
-  { type:'Health', title:'Top 10 Health Plans for Families in 2026', excerpt:'Compare the best family health insurance plans with comprehensive coverage and affordable premiums.', read:'7 min' },
-  { type:'Health', title:'Medicare vs Medicaid: A Complete Guide', excerpt:'Understand the differences between these government programs and which one you may qualify for.', read:'6 min' },
-  { type:'Auto', title:'How to Lower Your Auto Insurance Premium', excerpt:'Practical tips and strategies to reduce your car insurance costs without sacrificing coverage.', read:'4 min' },
-  { type:'Auto', title:'Full Coverage vs Liability Only: What You Need', excerpt:'Break down the differences and find out which auto coverage level is right for your situation.', read:'5 min' },
-  { type:'Auto', title:'Electric Vehicle Insurance: What\'s Different?', excerpt:'Discover how insuring an EV differs from traditional vehicles and what to look for in a policy.', read:'6 min' },
-  { type:'Home', title:'Home Insurance Claims: A Step-by-Step Guide', excerpt:'Navigate the claims process smoothly with our expert walkthrough from filing to settlement.', read:'8 min' },
-  { type:'Home', title:'Natural Disaster Coverage: Are You Protected?', excerpt:'Floods, earthquakes, hurricanes — learn what standard policies cover and where you need extra protection.', read:'6 min' },
-  { type:'Life', title:'Term vs Whole Life Insurance Explained', excerpt:'Compare the two main types of life insurance to determine which aligns with your financial goals.', read:'7 min' },
-  { type:'Life', title:'How Much Life Insurance Do You Really Need?', excerpt:'Use our expert framework to calculate the right amount of life insurance for your family.', read:'5 min' },
-  { type:'Life', title:'Life Insurance for Young Adults: Start Early', excerpt:'Why getting life insurance in your 20s can save you thousands and protect your future family.', read:'4 min' },
-  { type:'Financial', title:'Annuities Explained: A Retirement Income Guide', excerpt:'Learn how annuities provide guaranteed income and which type best fits your retirement plan.', read:'8 min' },
-  { type:'Financial', title:'Wealth Protection Strategies for High Earners', excerpt:'Advanced insurance strategies to protect assets and build generational wealth.', read:'9 min' },
-  { type:'Financial', title:'Investment-Linked Insurance: Pros and Cons', excerpt:'Is investment-linked insurance right for you? We break down the benefits and risks.', read:'6 min' },
-  { type:'Travel', title:'Best Travel Insurance for International Trips', excerpt:'Compare top travel insurance plans for medical emergencies, trip cancellations, and lost baggage.', read:'5 min' },
-  { type:'Travel', title:'Digital Nomad Insurance: Working Abroad Safely', excerpt:'Essential coverage for remote workers and digital nomads living in multiple countries.', read:'6 min' },
-  { type:'Business', title:'Small Business Insurance Essentials', excerpt:'The must-have insurance policies every small business owner needs from day one.', read:'7 min' },
-  { type:'Business', title:'Cyber Insurance: Protecting Your Digital Assets', excerpt:'Why every business needs cyber insurance and how to choose the right policy.', read:'5 min' },
-  { type:'Business', title:'Workers Compensation: Employer\'s Complete Guide', excerpt:'Understand your obligations and how to provide the best coverage for your employees.', read:'8 min' },
-  { type:'Pet', title:'Is Pet Insurance Worth It? A Data-Driven Answer', excerpt:'We analyzed real claims data to help you decide if pet insurance is a smart investment.', read:'5 min' },
-  { type:'Retirement', title:'Planning for Long-Term Care Costs', excerpt:'Strategies to prepare for potential long-term care needs without depleting your savings.', read:'7 min' },
-  { type:'Retirement', title:'Social Security + Insurance: Maximizing Benefits', excerpt:'How to coordinate Social Security with your insurance portfolio for optimal retirement income.', read:'6 min' },
-  { type:'General', title:'Insurance Score vs Credit Score: Key Differences', excerpt:'Understand how insurers evaluate your risk profile and what you can do to improve your score.', read:'4 min' },
-  { type:'General', title:'Bundling Insurance: When It Saves You Money', excerpt:'Learn when bundling home, auto, and life insurance actually saves money — and when it doesn\'t.', read:'5 min' },
-  { type:'General', title:'The Future of Insurance: AI and Personalization', excerpt:'How artificial intelligence is transforming the insurance industry and what it means for consumers.', read:'6 min' }
+const blogs = [
+  { title:'Understanding Health Insurance: A Complete Beginner\'s Guide', cat:'Health', read:'8 min', content:'Health insurance is one of the most important types of coverage you can have. It helps pay for medical expenses including doctor visits, hospital stays, prescription medications, and preventive care like vaccinations and screenings.\n\nWhen choosing a health insurance plan, you\'ll encounter terms like premiums (your monthly payment), deductibles (what you pay before insurance kicks in), copays (fixed amounts for services), and out-of-pocket maximums (the most you\'ll pay in a year).\n\nThere are several plan types: HMOs require you to use in-network providers and get referrals for specialists. PPOs offer more flexibility to see any doctor but cost more. EPOs combine elements of both. High-deductible health plans (HDHPs) have lower premiums but higher deductibles and can be paired with Health Savings Accounts.\n\nConsider your health needs, preferred doctors, prescription medications, and budget when selecting a plan. Open enrollment periods typically occur once a year, though qualifying life events may allow special enrollment.' },
+  { title:'Auto Insurance 101: What Coverage Do You Really Need?', cat:'Auto', read:'7 min', content:'Auto insurance is legally required in most states, but understanding what coverage levels you need can save you money while keeping you protected.\n\nLiability coverage pays for damage you cause to others. Most states require minimum amounts, but financial advisors often recommend higher limits to protect your assets. Collision coverage pays for damage to your car from accidents, while comprehensive covers non-collision events like theft, vandalism, and weather damage.\n\nUninsured/underinsured motorist coverage protects you if you\'re hit by someone without adequate insurance. Medical payments or Personal Injury Protection (PIP) covers medical expenses regardless of fault.\n\nFactors affecting your premium include your driving record, age, location, credit score, vehicle type, and mileage. You can lower costs through bundling policies, maintaining good credit, taking defensive driving courses, and choosing a higher deductible.\n\nReview your policy annually and shop around every few years to ensure you\'re getting competitive rates.' },
+  { title:'Home Insurance: Protecting Your Most Valuable Asset', cat:'Home', read:'9 min', content:'Your home is likely your most valuable asset, making home insurance essential for protecting your financial security.\n\nStandard homeowners insurance (HO-3) covers your dwelling, other structures (like garages and fences), personal property, loss of use (temporary living expenses), and personal liability. However, floods, earthquakes, and certain other perils require separate policies.\n\nDwelling coverage should be enough to rebuild your home at current construction costs, not its market value. Personal property coverage typically ranges from 50-70% of dwelling coverage. Consider a home inventory to document your belongings.\n\nReplacement cost coverage pays to replace items at current prices, while actual cash value factors in depreciation. Always opt for replacement cost when possible.\n\nYou can reduce premiums by bundling with auto insurance, installing security systems, maintaining good credit, raising your deductible, and making home improvements like roof upgrades or impact-resistant windows.' },
+  { title:'Life Insurance Explained: Term vs. Whole Life', cat:'Life', read:'10 min', content:'Life insurance provides financial security for your loved ones after you pass. The two main types serve different purposes.\n\nTerm life insurance provides coverage for a specific period (10, 20, or 30 years). It\'s affordable and straightforward — if you pass during the term, your beneficiaries receive the death benefit. It\'s ideal for covering specific financial obligations like a mortgage, children\'s education, or income replacement during working years.\n\nWhole life insurance provides permanent coverage with a cash value component that grows over time. Premiums are higher but remain level. The cash value can be borrowed against or surrendered. It\'s suitable for estate planning, leaving a legacy, or supplementing retirement income.\n\nA common rule of thumb suggests coverage of 10-15 times your annual income, but consider your specific debts, future obligations, and family needs. Many financial advisors recommend starting with affordable term coverage and adding permanent insurance as your budget allows.\n\nCompare quotes from multiple providers, as prices can vary significantly for identical coverage.' },
+  { title:'Disability Insurance: Protecting Your Income', cat:'Disability', read:'7 min', content:'Your ability to earn income is your most valuable financial asset. Disability insurance protects that income if illness or injury prevents you from working.\n\nShort-term disability covers the first few weeks to months of disability, typically replacing 60-70% of your salary. Long-term disability kicks in after the short-term period and can last years or until retirement age.\n\nEmployer-provided disability insurance is a common benefit, but coverage may be limited. Individual policies offer more comprehensive protection and are portable if you change jobs.\n\nKey policy features to understand include the elimination period (waiting time before benefits begin), benefit period (how long benefits last), own-occupation vs. any-occupation definitions, and riders like cost-of-living adjustments.\n\nStatistics show that roughly 1 in 4 workers will experience a disability before retirement. Even a few months without income can cause significant financial hardship. Consider disability insurance as essential as health or auto coverage.' },
+  { title:'Understanding Renters Insurance: Why Every Renter Needs It', cat:'Renters', read:'6 min', content:'Many renters mistakenly believe their landlord\'s insurance covers their belongings. In reality, your landlord\'s policy only covers the building structure, not your personal property.\n\nRenters insurance is surprisingly affordable, often costing just $15-30 per month. It covers your personal belongings against theft, fire, vandalism, and certain water damage. It also provides liability coverage if someone is injured in your rental and additional living expenses if your rental becomes uninhabitable.\n\nTo determine how much coverage you need, create a home inventory listing your belongings and their approximate values. Don\'t forget electronics, clothing, furniture, and kitchen items — they add up quickly.\n\nChoose replacement cost coverage rather than actual cash value. Replacement cost pays to replace your items at current prices, while actual cash value deducts for depreciation.\n\nMany insurers offer discounts for bundling renters insurance with auto insurance, installing security devices, or being claims-free. Check if your insurer offers a digital inventory tool to make documenting your belongings easier.' },
+  { title:'Umbrella Insurance: Extra Protection for Your Assets', cat:'Umbrella', read:'5 min', content:'Umbrella insurance provides an extra layer of liability protection beyond your home, auto, and other insurance policies. If you\'re ever sued and the damages exceed your primary policy limits, umbrella insurance covers the difference.\n\nA typical umbrella policy provides $1 million or more in additional liability coverage. Despite the high coverage amounts, premiums are relatively affordable — often $200-400 per year for $1 million in coverage.\n\nUmbrella insurance covers various liability claims including bodily injury, property damage, personal injury (like defamation or invasion of privacy), and legal defense costs. It can also cover situations not included in your primary policies.\n\nConsider umbrella insurance if you have significant assets to protect, own property, have a swimming pool or trampoline, employ household workers, coach youth sports, or are active on social media.\n\nMost insurers require minimum liability limits on your home and auto policies before selling an umbrella policy. This ensures there\'s no gap between your primary coverage and umbrella protection.' },
+  { title:'Travel Insurance: Is It Worth the Investment?', cat:'Travel', read:'6 min', content:'Travel insurance can be the difference between a minor inconvenience and a financial disaster when things go wrong during a trip.\n\nTrip cancellation coverage reimburses non-refundable expenses if you need to cancel for covered reasons like illness, injury, or severe weather. Trip interruption covers costs if you need to return home early.\n\nMedical coverage is crucial for international travel, as your domestic health insurance may not cover you abroad. Emergency medical evacuation alone can cost tens of thousands of dollars.\n\nBaggage coverage helps if your luggage is lost, stolen, or delayed. Travel delay coverage reimburses meals and accommodations during extended delays.\n\nTravel insurance typically costs 4-10% of your total trip cost. It\'s generally worthwhile for expensive trips, international travel, trips to remote destinations, adventure travel, or trips booked far in advance.\n\nRead the fine print carefully — pre-existing condition exclusions, coverage limits, and claim procedures vary by provider. Cancel For Any Reason (CFAR) upgrades provide the most flexibility but cost more.' },
+  { title:'Pet Insurance: Managing Your Pet\'s Healthcare Costs', cat:'Pet', read:'6 min', content:'Veterinary costs have risen significantly, making pet insurance an increasingly smart investment. A single emergency surgery can cost $3,000-$10,000 or more.\n\nAccident-only plans cover injuries from accidents like broken bones, poisoning, or vehicle impacts. Accident and illness plans add coverage for conditions like cancer, allergies, infections, and digestive issues. Comprehensive plans may also include wellness coverage for routine care.\n\nMost pet insurance works on a reimbursement model — you pay the vet bill upfront, submit a claim, and receive reimbursement based on your plan\'s coverage level (typically 70-90% after the deductible).\n\nKey factors to consider: annual deductibles, reimbursement percentages, annual or lifetime coverage limits, waiting periods before coverage begins, and breed-specific exclusions.\n\nPre-existing conditions are generally not covered, so enrolling when your pet is young and healthy provides the best value. Compare multiple providers, as coverage and pricing vary significantly. Some employers now offer pet insurance as a voluntary benefit.' },
+  { title:'Business Insurance Essentials for Small Business Owners', cat:'Business', read:'9 min', content:'Starting a business without proper insurance is a significant financial risk. The right coverage protects your business, employees, and personal assets.\n\nGeneral liability insurance covers third-party bodily injury, property damage, and advertising injury claims. It\'s often the first policy small businesses purchase.\n\nProfessional liability (Errors & Omissions) protects against claims of negligence or inadequate professional services. Essential for consultants, accountants, and service providers.\n\nBusiness property insurance covers your physical assets including equipment, inventory, furniture, and sometimes loss of income during covered events.\n\nWorkers\' compensation is required in most states if you have employees. It covers medical expenses and lost wages for work-related injuries.\n\nA Business Owner\'s Policy (BOP) bundles general liability and property insurance at a discounted rate. Commercial auto insurance is needed for business-owned vehicles.\n\nCyber liability insurance is increasingly important for businesses that handle customer data. As cyber threats grow, this coverage helps manage the financial impact of data breaches and ransomware attacks.' },
+  { title:'Dental Insurance: Maintaining Oral Health Affordably', cat:'Dental', read:'5 min', content:'Dental insurance helps manage the cost of dental care, from routine cleanings to major procedures. Without coverage, a single root canal can cost over $1,000.\n\nMost dental plans categorize services into three levels: preventive care (cleanings, X-rays, exams) typically covered at 100%, basic procedures (fillings, extractions) covered at 70-80%, and major procedures (crowns, bridges, root canals) covered at 50%.\n\nDHMO plans require you to use a specific dentist and have lower premiums but less flexibility. DPPO plans offer more provider choices but higher costs. Discount dental plans aren\'t insurance but provide reduced rates at participating dentists.\n\nAnnual maximums typically range from $1,000-$2,000, meaning the plan won\'t pay more than that amount per year. Waiting periods of 6-12 months may apply for major procedures.\n\nPreventive care is the best investment — regular cleanings and checkups catch problems early when they\'re less expensive to treat. Most plans cover two cleanings per year at no additional cost.' },
+  { title:'Vision Insurance: Seeing Clearly Without Breaking the Bank', cat:'Vision', read:'5 min', content:'Vision insurance covers eye care expenses that are typically excluded from health insurance plans. Regular eye exams can detect serious health conditions beyond vision problems.\n\nBasic vision plans typically cover an annual eye exam, an allowance for frames, and either glasses lenses or contact lenses. Some plans include discounts on LASIK or other vision correction procedures.\n\nVision plans come in two main types: vision benefits packages provide specific covered services with copays, while discount vision plans offer reduced rates at participating providers without traditional insurance coverage.\n\nFrame and lens allowances typically range from $100-$250 annually. If you prefer designer frames or progressive lenses, you\'ll likely pay some out-of-pocket costs beyond the allowance.\n\nEven if you have perfect vision, annual eye exams can detect conditions like diabetes, high blood pressure, and glaucoma. Vision insurance makes these important screenings affordable and accessible.\n\nCompare the cost of a vision plan against your expected expenses. If you only need a basic annual exam, paying out-of-pocket might be more economical than monthly premiums.' },
+  { title:'Flood Insurance: Essential Protection Standard Policies Miss', cat:'Flood', read:'7 min', content:'Standard home insurance does not cover flood damage — a fact many homeowners discover too late. Even a single inch of floodwater can cause $25,000 or more in damage.\n\nThe National Flood Insurance Program (NFIP) through FEMA provides flood insurance in participating communities. Private flood insurance is also available and may offer additional coverage options.\n\nNFIP policies cover up to $250,000 for your building and $100,000 for personal property. Private insurers may offer higher limits. There\'s typically a 30-day waiting period before coverage takes effect.\n\nFlood zones are categorized from high-risk (Zone A and V) to moderate and low-risk (Zones B, C, and X). Even low-risk areas experience floods — over 20% of NFIP claims come from moderate-to-low risk zones.\n\nMortgage lenders require flood insurance for properties in high-risk flood zones. Even if not required, consider coverage if you\'re near water, in a low-lying area, or have experienced any flooding.\n\nElevating utilities, installing flood vents, and maintaining proper drainage can reduce both flood risk and insurance premiums.' },
+  { title:'Earthquake Insurance: Preparing for the Unexpected', cat:'Earthquake', read:'6 min', content:'Earthquakes can strike with little warning, and standard homeowners insurance excludes earthquake damage. For homeowners in seismically active regions, earthquake insurance is essential protection.\n\nEarthquake insurance covers damage to your home\'s structure, personal property, and additional living expenses if your home becomes uninhabitable. Policies typically have high deductibles, ranging from 10-25% of your coverage limit.\n\nIn California, the California Earthquake Authority (CEA) is the largest provider, offering policies through participating insurers. Other states offer earthquake coverage through standard insurance companies or specialized providers.\n\nPremiums depend on your home\'s age, construction type, foundation, soil conditions, proximity to fault lines, and chosen deductible. Retrofitting your home (bolting to the foundation, bracing cripple walls) can significantly reduce premiums.\n\nWhile earthquakes are most associated with California, significant seismic risk exists in many other areas including the New Madrid fault zone in the central U.S., the Pacific Northwest, and parts of the Northeast. Assess your risk based on local geological surveys.' },
+  { title:'Annuities Explained: Guaranteed Income in Retirement', cat:'Annuities', read:'8 min', content:'Annuities are financial products that provide a guaranteed income stream, making them a popular tool for retirement planning. They\'re essentially a contract between you and an insurance company.\n\nFixed annuities offer a guaranteed interest rate and predictable income payments. They\'re low-risk and easy to understand, making them suitable for conservative investors.\n\nVariable annuities invest in sub-accounts similar to mutual funds, offering higher growth potential but also more risk. Returns depend on market performance.\n\nIndexed annuities link returns to a market index like the S&P 500 while providing downside protection. You participate in some market gains without risking your principal.\n\nImmediate annuities begin payments right away, while deferred annuities accumulate value before payments begin. The right choice depends on when you need income.\n\nConsider annuities as part of a diversified retirement strategy. They work best for ensuring you don\'t outlive your savings. However, they often have higher fees than other investments and may have surrender charges for early withdrawals.\n\nAlways compare products from multiple providers and consider working with a fee-only financial advisor who doesn\'t earn commissions from annuity sales.' },
+  { title:'Wealth Management Insurance: Protecting and Growing Assets', cat:'Wealth', read:'8 min', content:'Wealth management insurance combines protection with financial growth strategies, helping high-net-worth individuals preserve and build their wealth.\n\nCash value life insurance policies (whole life, universal life, variable universal life) serve dual purposes: providing death benefit protection while accumulating tax-advantaged cash value that can supplement retirement income.\n\nEstate planning insurance helps manage estate taxes and ensures wealth transfers smoothly to heirs. Irrevocable Life Insurance Trusts (ILITs) can remove life insurance proceeds from your taxable estate.\n\nKey person insurance protects businesses against the financial impact of losing essential employees or owners. It can fund buy-sell agreements and ensure business continuity.\n\nLong-term care planning is crucial for wealth preservation. Without coverage, long-term care costs (averaging $7,000-$9,000+ per month for nursing homes) can rapidly deplete savings built over a lifetime.\n\nCoordinate insurance with your overall financial plan. Work with advisors who understand your complete picture — investments, taxes, estate planning, and insurance should all work together.\n\nRegularly review your coverage as your wealth grows. Insurance needs change with life events, market conditions, and tax law changes.' },
+  { title:'Long-Term Care Insurance: Planning for Future Needs', cat:'Long-Term Care', read:'7 min', content:'Long-term care insurance covers services that help with daily living activities when you can no longer perform them independently due to aging, illness, or disability.\n\nCovered services typically include nursing home care, assisted living facilities, adult daycare, and in-home care. The average cost of a private nursing home room exceeds $100,000 annually.\n\nTraditional long-term care policies charge regular premiums for specified benefits. However, premiums can increase over time, and if you never need care, benefits go unused.\n\nHybrid policies combine life insurance or annuities with long-term care benefits. If you need care, the policy pays for it. If you don\'t, your beneficiaries receive a death benefit. These eliminate the "use it or lose it" concern.\n\nThe ideal age to purchase long-term care insurance is typically in your mid-50s. Buying too early means paying premiums for many years; buying too late results in higher costs or potential denial due to health issues.\n\nInflation protection is crucial — without it, your benefit may be inadequate decades from now when you actually need care. Choose compound inflation protection if available.\n\nMedicare covers limited skilled nursing care but not custodial long-term care. Medicaid covers long-term care but requires spending down most assets first.' },
+  { title:'Cyber Insurance: Protection in the Digital Age', cat:'Cyber', read:'7 min', content:'As our lives become increasingly digital, cyber insurance protects against the financial consequences of cyber attacks, data breaches, and digital fraud.\n\nFor businesses, cyber insurance covers data breach response costs (notification, credit monitoring, legal fees), business interruption losses from cyber attacks, ransomware payments and recovery costs, and regulatory fines and penalties.\n\nFor individuals, cyber insurance or identity theft protection covers costs related to identity restoration, fraudulent charges, legal expenses, and lost wages while dealing with identity theft.\n\nFirst-party coverage protects your own losses, while third-party coverage handles claims from others affected by a data breach at your business.\n\nCyber risk is growing exponentially. Small businesses are increasingly targeted because they often have weaker security measures. The average cost of a data breach exceeds $4 million for businesses.\n\nBefore purchasing cyber insurance, assess your digital risks: what data do you store, what security measures are in place, and what would a breach cost? Many insurers offer risk assessments and loss prevention resources.\n\nCyber insurance supplements but doesn\'t replace good cybersecurity practices. Strong passwords, regular updates, employee training, and backup systems are still your first line of defense.' },
+  { title:'Marine Insurance: Protecting Watercraft and Cargo', cat:'Marine', read:'5 min', content:'Marine insurance covers watercraft, cargo, and marine-related liabilities. Whether you own a small sailboat or transport goods commercially, marine insurance provides essential protection.\n\nPleasure boat insurance covers recreational watercraft against physical damage, theft, liability for injuries to others, and medical payments. Coverage varies based on the type and value of your vessel.\n\nCommercial marine insurance covers cargo during transit (ocean, air, or land), hull and machinery damage to commercial vessels, and marine liability.\n\nBoat insurance policies may include coverage for navigation equipment, towing and assistance, fuel spill liability, and personal property aboard. Agreed value policies pay the full insured amount in case of total loss, while actual cash value policies factor in depreciation.\n\nFactors affecting premiums include the boat\'s type, age, size, and value; where it\'s used and stored; your boating experience; and safety equipment installed.\n\nNavigational boundaries define where your boat is covered. Ensure your policy covers all areas where you plan to operate. Some policies restrict coverage to inland waters, while others include coastal or offshore zones.' },
+  { title:'Professional Liability: Protecting Your Career and Reputation', cat:'Professional Liability', read:'6 min', content:'Professional liability insurance, also known as Errors and Omissions (E&O) insurance, protects professionals against claims of negligence, mistakes, or failure to perform professional duties.\n\nThis coverage is essential for doctors (medical malpractice), lawyers (legal malpractice), accountants, architects, engineers, consultants, real estate agents, technology companies, and financial advisors.\n\nProfessional liability covers legal defense costs, settlements and judgments, regulatory proceedings, and sometimes lost income during litigation. Even unfounded claims require expensive legal defense.\n\nClaims-made policies cover claims made during the policy period for incidents that occurred after the retroactive date. Occurrence policies cover incidents that happen during the policy period, regardless of when the claim is filed.\n\nTail coverage (extended reporting period) is important when switching insurers or retiring, ensuring claims from past work remain covered.\n\nPremiums depend on your profession, revenue, claims history, coverage limits, and deductible. Higher-risk professions like medical practitioners and lawyers typically pay more.\n\nMany professional associations and licensing bodies require professional liability insurance. Even when not required, the financial protection it provides makes it a wise investment for any professional service provider.' },
+  { title:'Crop Insurance: Safeguarding America\'s Agriculture', cat:'Crop', read:'6 min', content:'Crop insurance protects farmers against the financial impact of crop losses due to natural disasters, adverse weather, and sometimes price declines.\n\nThe Federal Crop Insurance Program, administered by USDA\'s Risk Management Agency, provides subsidized crop insurance through private insurance companies. Premium subsidies typically cover 50-67% of the premium cost.\n\nMultiple Peril Crop Insurance (MPCI) covers losses from drought, excess moisture, hail, wind, frost, insects, and disease. Revenue protection plans cover both yield losses and price declines.\n\nCrop-Hail insurance provides additional coverage for hail damage beyond what MPCI covers. It can be purchased at any time and doesn\'t require yield history.\n\nWhole-farm revenue protection covers all commodities on a farm under a single policy, making it useful for diversified operations and specialty crop growers.\n\nTo obtain crop insurance, work with an authorized crop insurance agent. Important deadlines include sales closing dates (when you must purchase coverage) and acreage reporting dates.\n\nProper record-keeping of planting dates, production records, and farming practices is essential for successful claims. Many agencies now offer digital tools for easier record management.' },
+  { title:'Workers Compensation: Rights and Responsibilities', cat:'Workers Comp', read:'7 min', content:'Workers compensation insurance provides benefits to employees who suffer work-related injuries or illnesses. It\'s required in most states for businesses with employees.\n\nBenefits typically include medical expenses for treatment of work-related conditions, temporary disability payments (usually 60-70% of wages), permanent disability benefits for lasting impairments, vocational rehabilitation, and death benefits for surviving dependents.\n\nEmployees generally cannot sue their employer for work-related injuries when workers compensation is in place — this is known as the "exclusive remedy" doctrine. However, they may pursue claims against third parties who contributed to the injury.\n\nPremiums are based on your industry classification codes, payroll amounts, and experience modification rate (based on your claims history compared to similar businesses).\n\nYou can reduce workers compensation costs by implementing workplace safety programs, returning injured workers to modified duty promptly, investigating accidents thoroughly to prevent recurrences, and reviewing your classification codes for accuracy.\n\nMost states have strict deadlines for reporting workplace injuries. Familiarize yourself with your state\'s requirements and establish clear reporting procedures for employees.' },
+  { title:'GAP Insurance: Bridging the Coverage Gap', cat:'GAP', read:'5 min', content:'Guaranteed Asset Protection (GAP) insurance covers the difference between what you owe on your auto loan or lease and the vehicle\'s actual cash value if it\'s totaled or stolen.\n\nNew vehicles depreciate rapidly — losing 20-30% of their value in the first year. If your car is totaled shortly after purchase, your standard auto insurance only pays the current market value, which may be thousands less than your loan balance.\n\nGAP insurance is particularly valuable when you made a small or no down payment, have a loan term longer than 60 months, rolled negative equity from a previous vehicle into your current loan, or drive high-depreciation vehicles.\n\nYou can purchase GAP insurance from the dealership (usually the most expensive option), your auto insurance company (often added as an endorsement for a few dollars per month), your lender, or standalone providers.\n\nSome alternatives to traditional GAP insurance include loan/lease payoff coverage from auto insurers (which covers a percentage of the gap rather than the full amount) and new car replacement coverage (which pays to replace your totaled vehicle with a new one of the same make and model).\n\nReview your GAP coverage periodically. Once your loan balance falls below your vehicle\'s value, GAP insurance is no longer necessary and can be cancelled to save money.' },
+  { title:'Mortgage Insurance: Understanding PMI and MIP', cat:'Mortgage', read:'6 min', content:'Mortgage insurance protects the lender if you default on your home loan. It\'s typically required when your down payment is less than 20% of the home\'s purchase price.\n\nPrivate Mortgage Insurance (PMI) applies to conventional loans. It can be paid monthly, as a single upfront premium, or split between upfront and monthly payments. PMI typically costs 0.5-1.5% of the original loan amount annually.\n\nMortgage Insurance Premium (MIP) applies to FHA loans. It includes both an upfront premium (1.75% of the loan amount) and an annual premium (0.45-1.05% depending on loan terms). FHA MIP may be required for the life of the loan.\n\nYou can request PMI cancellation once your home equity reaches 20% of the original value. Lenders must automatically terminate PMI when equity reaches 22%. Home improvements and market appreciation can help you reach these thresholds sooner.\n\nLender-paid mortgage insurance (LPMI) eliminates monthly PMI payments but typically results in a higher interest rate for the life of the loan. Calculate the long-term cost to determine which option saves more.\n\nPiggyback loans (80-10-10) use a second mortgage to avoid PMI entirely. You make a 10% down payment, take an 80% first mortgage and a 10% second mortgage. Compare total costs carefully before choosing this approach.' },
+  { title:'Critical Illness Insurance: Financial Protection When It Matters Most', cat:'Critical Illness', read:'7 min', content:'Critical illness insurance pays a lump sum if you\'re diagnosed with a covered serious illness. This money can be used for any purpose — medical bills, mortgage payments, living expenses, or recovery costs.\n\nCommonly covered conditions include cancer, heart attack, stroke, kidney failure, major organ transplant, and coronary artery bypass surgery. Some policies also cover conditions like blindness, deafness, paralysis, and Alzheimer\'s disease.\n\nUnlike health insurance, which pays providers directly for specific medical services, critical illness insurance pays you directly. This gives you flexibility to use the funds where they\'re needed most, including non-medical expenses.\n\nCritical illness insurance complements but doesn\'t replace health insurance. It fills the gap for costs that health insurance doesn\'t cover — lost income, travel for treatment, home modifications, childcare, or experimental treatments.\n\nPremiums depend on your age, health status, coverage amount, and the number of conditions covered. Younger, healthier applicants receive lower rates. Some employers offer group critical illness policies at discounted rates.\n\nReturn-of-premium riders refund your premiums if you never make a claim, though they increase the policy cost. Recurrence benefits provide additional payments if a covered condition returns.\n\nConsider your existing coverage, savings, and financial obligations when deciding on a coverage amount. Most people choose between $10,000 and $50,000, though higher amounts are available.' },
 ];
 
-const blogTypes = [...new Set(blogData.map(b => b.type))];
-let activeBlogType = 'All';
-let activeInsuranceTab = 'market';
+// ========== NAVIGATION ==========
+let currentPage = 'home';
 
-// ==================== NAVIGATION ====================
-function navigateTo(section) {
-  const wrapper = document.getElementById('app-wrapper');
-  const pageHome = document.getElementById('page-home');
-  const pageDisclaimer = document.getElementById('page-disclaimer');
-  const footer = document.getElementById('main-footer');
-
-  if (section === 'disclaimer') {
-    pageHome.classList.add('hidden');
-    pageDisclaimer.classList.remove('hidden');
-    footer.classList.remove('hidden');
-    wrapper.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  }
-
-  pageHome.classList.remove('hidden');
-  pageDisclaimer.classList.add('hidden');
-  footer.classList.remove('hidden');
-
-  if (section === 'home') {
-    wrapper.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  }
-
-  const sectionMap = {
-    'about': 'section-about',
-    'insurance-types': 'section-insurance-types',
-    'companies': 'section-companies',
-    'blogs': 'section-blogs',
-    'calculator': 'section-calculator',
-    'contact': 'section-contact'
-  };
-
-  const targetId = sectionMap[section];
-  if (targetId) {
-    setTimeout(() => {
-      const el = document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+function navigateTo(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) {
+    target.classList.add('active');
+    currentPage = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('hidden');
 }
 
-// ==================== INSURANCE TABS ====================
-function switchInsuranceTab(tab) {
-  activeInsuranceTab = tab;
-  document.querySelectorAll('#insurance-tabs .tab-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.tab === tab);
-  });
-  renderInsuranceTypes();
-}
-
-function renderInsuranceTypes() {
-  const types = insuranceTypes[activeInsuranceTab];
-  const grid = document.getElementById('insurance-content');
-  grid.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">${types.map((t, i) => `
-    <div class="card-hover bg-white border border-navy-100 rounded-2xl p-6 cursor-pointer group" style="animation:fadeUp 0.5s ease forwards;animation-delay:${i*0.08}s;opacity:0">
-      <div class="w-14 h-14 rounded-xl bg-navy-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-        <i data-lucide="${t.icon}" class="w-7 h-7 text-gold-400"></i>
-      </div>
-      <h3 class="font-display text-lg font-bold text-navy-600 mb-2">${t.title}</h3>
-      <p class="text-navy-400 text-sm leading-relaxed">${t.desc}</p>
-      <button onclick="navigateTo('calculator')" class="mt-4 text-gold-500 font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Find Plans <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  `).join('')}</div>`;
+// ========== RENDER HOME CATEGORIES ==========
+function renderHomeCategories() {
+  const container = document.getElementById('home-categories');
+  const featured = insuranceTypes.slice(0, 10);
+  container.innerHTML = featured.map(t => `
+    <button onclick="navigateTo('insurance')" class="card-glow bg-navy-500/40 border border-gold-500/10 rounded-xl p-4 text-center hover:border-gold-500/30">
+      <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background:${t.color}20"><i data-lucide="${t.icon}" class="w-5 h-5" style="color:${t.color}"></i></div>
+      <span class="text-white text-xs font-medium">${t.name}</span>
+    </button>
+  `).join('');
   lucide.createIcons();
 }
 
-// ==================== COMPANIES ====================
-function renderCompanies() {
-  const grid = document.getElementById('companies-grid');
-  const colors = ['#D4A843','#3d62a0','#8da5ce','#6283ba','#C4962F'];
-  grid.innerHTML = companies.map((c, i) => `
-    <div class="card-hover bg-black border border-gold-400/30 rounded-xl p-5 flex flex-col hover:shadow-xl hover:shadow-gold-400/10 transition-all" style="animation:fadeUp 0.4s ease forwards;animation-delay:${i*0.03}s;opacity:0">
-      <div class="flex items-center gap-3 mb-3">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center text-black font-bold text-sm" style="background:${colors[i%5]}">${c.name.charAt(0)}</div>
-        <div>
-          <h4 class="font-bold text-gold-400 text-sm">${c.name}</h4>
-          <span class="text-white/50 text-xs">${c.type}</span>
-        </div>
+// ========== RENDER HOME COMPANIES ==========
+function renderHomeCompanies() {
+  const container = document.getElementById('home-companies');
+  const featured = companies.slice(0, 10);
+  container.innerHTML = featured.map(c => `
+    <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="company-card bg-navy-500/40 border border-gold-500/10 rounded-xl p-3 text-center hover:border-gold-500/30 block">
+      <div class="w-10 h-10 rounded-full bg-gold-500/10 mx-auto mb-2 flex items-center justify-center">
+        <span class="text-gold-500 font-bold text-sm">${c.name.charAt(0)}</span>
       </div>
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-xs font-medium text-white/40">Rating:</span>
-        <span class="text-xs font-bold text-gold-400">${c.rating}</span>
-      </div>
-      <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2.5 rounded-lg gold-gradient text-black font-bold text-sm hover:shadow-lg hover:shadow-gold-400/30 transition-all">Learn More →</a>
-    </div>
+      <span class="text-white text-xs font-medium block">${c.name}</span>
+    </a>
   `).join('');
 }
 
-// ==================== BLOGS ====================
+// ========== RENDER HOME BLOGS ==========
+function renderHomeBlogs() {
+  const container = document.getElementById('home-blogs');
+  const featured = blogs.slice(0, 3);
+  container.innerHTML = featured.map((b, i) => `
+    <button onclick="openBlogModal(${i})" class="blog-card bg-navy-500/40 border border-gold-500/10 rounded-xl p-5 text-left hover:border-gold-500/30 w-full">
+      <span class="bg-gold-500/10 text-gold-400 px-3 py-1 rounded-full text-xs font-medium">${b.cat}</span>
+      <h3 class="heading-font text-lg font-bold text-white mt-3 mb-2 line-clamp-2">${b.title}</h3>
+      <p class="text-gray-400 text-sm line-clamp-2">${b.content.substring(0, 120)}...</p>
+      <span class="text-gold-400 text-xs mt-3 inline-flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>${b.read} read</span>
+    </button>
+  `).join('');
+  lucide.createIcons();
+}
+
+// ========== INSURANCE TYPES ==========
+function renderInsurance(filter = 'all') {
+  const grid = document.getElementById('insurance-grid');
+  const filtered = filter === 'all' ? insuranceTypes : insuranceTypes.filter(t => t.cat === filter);
+  grid.innerHTML = filtered.map(t => `
+    <div class="card-glow bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6">
+      <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" style="background:${t.color}15">
+        <i data-lucide="${t.icon}" class="w-7 h-7" style="color:${t.color}"></i>
+      </div>
+      <h3 class="heading-font text-xl font-bold text-white mb-2">${t.name}</h3>
+      <span class="inline-block bg-gold-500/10 text-gold-400 px-2 py-0.5 rounded-full text-xs font-medium mb-3">${t.cat === 'market' ? 'Market Insurance' : 'Financial Insurance'}</span>
+      <p class="text-gray-400 text-sm leading-relaxed">${t.desc}</p>
+      <button onclick="navigateTo('blogs')" class="mt-4 text-gold-400 text-sm font-medium hover:text-gold-300 transition-colors inline-flex items-center gap-1">
+        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+
+function filterInsurance(filter) {
+  document.querySelectorAll('[data-tab]').forEach(btn => {
+    btn.classList.remove('tab-active');
+    btn.classList.add('text-gray-400');
+    if (btn.dataset.tab === filter) {
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-gray-400');
+    }
+  });
+  renderInsurance(filter);
+}
+
+// ========== COMPANIES ==========
+function renderCompanies(filter = 'all') {
+  const grid = document.getElementById('companies-grid');
+  const filtered = filter === 'all' ? companies : companies.filter(c => c.cat.includes(filter));
+  grid.innerHTML = filtered.map(c => `
+    <div class="company-card bg-navy-500/40 border border-gold-500/10 rounded-xl p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-12 h-12 rounded-full bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+          <span class="text-gold-500 font-bold text-lg">${c.name.charAt(0)}</span>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold text-sm">${c.name}</h3>
+          <div class="flex flex-wrap gap-1 mt-1">${c.cat.map(ct => `<span class="text-xs text-gray-500 bg-navy-700/50 px-2 py-0.5 rounded">${ct}</span>`).join('')}</div>
+        </div>
+      </div>
+      <p class="text-gray-400 text-xs mb-4 leading-relaxed">${c.desc}</p>
+      <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="btn-gold block text-center py-2.5 rounded-lg text-sm font-bold hover:shadow-lg hover:shadow-gold-500/20 transition-all">
+        Visit Official Site <i data-lucide="external-link" class="w-3 h-3 inline ml-1"></i>
+      </a>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+
+function filterCompanies(filter) {
+  document.querySelectorAll('[data-ctab]').forEach(btn => {
+    btn.classList.remove('tab-active');
+    btn.classList.add('text-gray-400');
+    if (btn.dataset.ctab === filter) {
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-gray-400');
+    }
+  });
+  renderCompanies(filter);
+}
+
+// ========== BLOGS ==========
+const blogCategories = [...new Set(blogs.map(b => b.cat))];
+
 function renderBlogTabs() {
   const container = document.getElementById('blog-tabs');
-  const allTypes = ['All', ...blogTypes];
-  container.innerHTML = allTypes.map(t => `
-    <button onclick="filterBlogs('${t}')" class="tab-btn ${t==='All'?'active':''} px-4 py-2 rounded-full text-sm font-medium bg-navy-100 text-navy-600" data-blogtab="${t}">${t}</button>
-  `).join('');
+  container.innerHTML = `<button onclick="filterBlogs('all')" class="tab-btn tab-active px-4 py-2 text-sm font-medium rounded-t-lg" data-btab="all">All Guides</button>` +
+    blogCategories.map(cat => `<button onclick="filterBlogs('${cat}')" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 rounded-t-lg" data-btab="${cat}">${cat}</button>`).join('');
 }
 
-function filterBlogs(type) {
-  activeBlogType = type;
-  document.querySelectorAll('#blog-tabs .tab-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.blogtab === type);
-  });
-  renderBlogs();
-}
-
-function renderBlogs() {
-  const filtered = activeBlogType === 'All' ? blogData : blogData.filter(b => b.type === activeBlogType);
+function renderBlogs(filter = 'all') {
   const grid = document.getElementById('blogs-grid');
-  const tagColors = { Health:'bg-red-100 text-red-700', Auto:'bg-blue-100 text-blue-700', Home:'bg-green-100 text-green-700', Life:'bg-purple-100 text-purple-700', Financial:'bg-amber-100 text-amber-700', Travel:'bg-cyan-100 text-cyan-700', Business:'bg-indigo-100 text-indigo-700', Pet:'bg-pink-100 text-pink-700', Retirement:'bg-teal-100 text-teal-700', General:'bg-gray-100 text-gray-700' };
-  const gradients = ['from-navy-600 to-navy-700','from-gold-600 to-gold-700','from-blue-600 to-blue-700','from-indigo-600 to-indigo-700'];
-  grid.innerHTML = filtered.map((b, i) => `
-    <article class="blog-card card-hover bg-white border border-navy-100 rounded-2xl overflow-hidden flex flex-col" style="animation:fadeUp 0.4s ease forwards;animation-delay:${i*0.05}s;opacity:0">
-      <div class="h-36 bg-gradient-to-br ${gradients[i%4]} flex items-center justify-center p-4">
-        <span class="font-display text-white/90 text-sm font-bold text-center leading-snug">${b.title}</span>
+  const filtered = filter === 'all' ? blogs : blogs.filter(b => b.cat === filter);
+  grid.innerHTML = filtered.map((b, origIdx) => {
+    const idx = blogs.indexOf(b);
+    return `
+    <button onclick="openBlogModal(${idx})" class="blog-card bg-navy-500/40 border border-gold-500/10 rounded-xl p-5 text-left hover:border-gold-500/30 w-full">
+      <div class="flex items-center justify-between mb-3">
+        <span class="bg-gold-500/10 text-gold-400 px-3 py-1 rounded-full text-xs font-medium">${b.cat}</span>
+        <span class="text-gray-500 text-xs flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>${b.read}</span>
       </div>
-      <div class="p-5 flex flex-col flex-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${tagColors[b.type]||'bg-gray-100 text-gray-700'}">${b.type}</span>
-          <span class="text-navy-300 text-xs flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>${b.read}</span>
-        </div>
-        <h3 class="font-display text-base font-bold text-navy-600 mb-2 leading-snug">${b.title}</h3>
-        <p class="text-navy-400 text-sm leading-relaxed flex-1">${b.excerpt}</p>
-        <button onclick="openBlogModal(${i})" class="mt-4 text-gold-500 font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Read More <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-      </div>
-    </article>
-  `).join('');
+      <h3 class="heading-font text-base font-bold text-white mb-2 line-clamp-2">${b.title}</h3>
+      <p class="text-gray-400 text-xs leading-relaxed line-clamp-3">${b.content.substring(0, 150)}...</p>
+      <span class="text-gold-400 text-xs mt-3 inline-flex items-center gap-1 font-medium">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+    </button>`;
+  }).join('');
   lucide.createIcons();
 }
 
-// Blog modal
-function openBlogModal(index) {
-  const blog = (activeBlogType === 'All' ? blogData : blogData.filter(b => b.type === activeBlogType))[index];
-  if (!blog) return;
-  const existing = document.getElementById('blog-modal');
-  if (existing) existing.remove();
+function filterBlogs(filter) {
+  document.querySelectorAll('[data-btab]').forEach(btn => {
+    btn.classList.remove('tab-active');
+    btn.classList.add('text-gray-400');
+    if (btn.dataset.btab === filter) {
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-gray-400');
+    }
+  });
+  renderBlogs(filter);
+}
 
-  const modal = document.createElement('div');
-  modal.id = 'blog-modal';
-  modal.className = 'fixed inset-0 z-[100] flex items-center justify-center p-4';
-  modal.style.background = 'rgba(11,29,81,0.8)';
-  modal.style.backdropFilter = 'blur(4px)';
-  modal.innerHTML = `
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80%] overflow-y-auto p-6 sm:p-8 relative" style="animation:fadeUp 0.3s ease">
-      <button onclick="document.getElementById('blog-modal').remove()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy-100 flex items-center justify-center hover:bg-navy-200 transition-colors"><i data-lucide="x" class="w-4 h-4 text-navy-600"></i></button>
-      <span class="text-gold-500 font-semibold text-xs tracking-wider uppercase">${blog.type} Insurance</span>
-      <h2 class="font-display text-2xl font-bold text-navy-600 mt-2 mb-4">${blog.title}</h2>
-      <div class="flex items-center gap-3 mb-6 text-sm text-navy-400">
-        <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4"></i>${blog.read} read</span>
-        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4"></i>Jan 2026</span>
-      </div>
-      <div class="prose max-w-none text-navy-500 leading-relaxed space-y-4">
-        <p>${blog.excerpt}</p>
-        <p>Insurance is one of the most critical financial tools available to individuals and families. Understanding the nuances of different coverage types empowers you to make informed decisions that protect your assets, income, and loved ones.</p>
-        <h3 class="font-display text-lg font-bold text-navy-600">Key Takeaways</h3>
-        <ul class="list-disc pl-5 space-y-2">
-          <li>Always compare quotes from multiple providers before committing to a policy.</li>
-          <li>Review your coverage annually to ensure it still meets your needs as life circumstances change.</li>
-          <li>Consider bundling multiple policies with one provider for potential discounts.</li>
-          <li>Read the fine print — understand exclusions, deductibles, and coverage limits.</li>
-        </ul>
-        <p>At ProtectV, we believe informed consumers make the best decisions. Browse our full library of 25+ expert articles to continue building your insurance knowledge.</p>
-      </div>
-      <button onclick="navigateTo('calculator');document.getElementById('blog-modal').remove()" class="mt-6 w-full py-3 gold-gradient text-navy-600 font-bold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"><i data-lucide="calculator" class="w-5 h-5"></i> Find Your Perfect Plan</button>
-    </div>`;
-  document.getElementById('app-wrapper').appendChild(modal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+function openBlogModal(idx) {
+  const blog = blogs[idx];
+  document.getElementById('blog-modal-title').textContent = blog.title;
+  document.getElementById('blog-modal-cat').textContent = blog.cat;
+  document.getElementById('blog-modal-read').textContent = blog.read + ' read';
+  document.getElementById('blog-modal-content').innerHTML = blog.content.split('\n\n').map(p => `<p>${p}</p>`).join('');
+  document.getElementById('blog-modal').classList.add('show');
   lucide.createIcons();
 }
 
-// ==================== CALCULATOR ====================
-function calculateNeeds() {
-  const age = document.getElementById('calc-age').value;
-  const income = document.getElementById('calc-income').value;
-  const family = document.getElementById('calc-family').value;
-  const assets = document.getElementById('calc-assets').value;
-  const priority = document.getElementById('calc-priority').value;
-  const health = document.getElementById('calc-health').value;
+function closeBlogModal() {
+  document.getElementById('blog-modal').classList.remove('show');
+}
 
-  if (!age || !income || !family || !assets || !priority || !health) {
-    showToast('Please fill in all fields to get your personalized recommendations.', 'warning');
-    return;
-  }
+// ========== CALCULATOR ==========
+function calculateCoverage(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const age = fd.get('age');
+  const home = fd.get('home');
+  const vehicle = fd.get('vehicle');
+  const dependents = fd.get('dependents');
+  const budget = fd.get('budget');
+  const priority = fd.get('priority');
 
-  const recommendations = [];
+  const recs = [];
 
-  // Health-based
-  if (health === 'chronic' || health === 'fair') {
-    recommendations.push({ icon:'heart-pulse', title:'Comprehensive Health Plan', priority:'Essential', budget:'$250-400/mo', why:'Your health profile benefits from broader coverage with lower out-of-pocket costs.', companies:['UnitedHealth','Cigna','Humana'] });
-  } else {
-    recommendations.push({ icon:'heart-pulse', title:'Standard Health Coverage', priority:'Recommended', budget:'$150-300/mo', why:'Solid foundation with preventive care and hospital coverage for routine medical needs.', companies:['UnitedHealth','Cigna','Humana'] });
-  }
+  // Health is always recommended
+  recs.push({
+    type: 'Health Insurance',
+    icon: 'heart-pulse',
+    color: '#ef4444',
+    why: 'Health insurance is essential for everyone. It protects against potentially devastating medical costs and ensures access to preventive care, which becomes increasingly important at every life stage.',
+    budget: budget === 'low' ? '$50-$100/mo' : budget === 'mid' ? '$100-$250/mo' : budget === 'high' ? '$200-$400/mo' : '$300-$600/mo',
+    next: 'Compare plans during open enrollment. Consider HMO for lower costs or PPO for more flexibility.'
+  });
 
-  // Family-based
-  if (family === 'family' || family === 'married') {
-    recommendations.push({ icon:'shield', title:'Term Life Insurance', priority:'Essential', budget:'$30-60/mo', why:'Protects your family\'s financial security with coverage of 10-15x your annual income.', companies:['New York Life','Northwestern Mutual','Prudential'] });
-  }
-
-  // Asset-based
-  if (assets === 'homeowner' || assets === 'both') {
-    recommendations.push({ icon:'home', title:'Homeowners Insurance', priority:'Essential', budget:'$800-1,500/yr', why:'Mandatory for mortgages. Protects your home and belongings from damage and liability.', companies:['State Farm','Allstate','Liberty Mutual'] });
-  }
-  if (assets === 'vehicle' || assets === 'both') {
-    recommendations.push({ icon:'car', title:'Auto Insurance', priority:'Essential', budget:'$100-200/mo', why:'Required by law. Full coverage protects your vehicle and liability for accidents.', companies:['Geico','Progressive','State Farm'] });
-  }
-  if (assets === 'business') {
-    recommendations.push({ icon:'briefcase', title:'Business Insurance Package', priority:'Essential', budget:'$500-2,000/mo', why:'Covers liability, property, and employee protection for your business operations.', companies:['Travelers','Chubb','AIG'] });
-  }
-
-  // Priority-based
-  if (priority === 'wealth') {
-    recommendations.push({ icon:'trending-up', title:'Investment-Linked Insurance', priority:'Recommended', budget:'$200-500/mo', why:'Combines insurance protection with investment growth potential for wealth building.', companies:['Fidelity','MassMutual','Manulife'] });
-  }
-  if (priority === 'retirement') {
-    recommendations.push({ icon:'landmark', title:'Annuity Plan', priority:'Recommended', budget:'Varies', why:'Provides guaranteed retirement income to supplement Social Security.', companies:['Prudential','MetLife','Sun Life'] });
-  }
-  if (priority === 'family-protection') {
-    recommendations.push({ icon:'wallet', title:'Disability Insurance', priority:'Recommended', budget:'$50-100/mo', why:'Replaces your income if illness or injury prevents you from working.', companies:['AFLAC','Northwestern Mutual','MassMutual'] });
+  if (vehicle === 'yes') {
+    recs.push({
+      type: 'Auto Insurance',
+      icon: 'car',
+      color: '#3b82f6',
+      why: 'Since you own a vehicle, auto insurance is legally required and protects you financially from accidents, liability claims, and vehicle damage.',
+      budget: budget === 'low' ? '$50-$100/mo' : budget === 'mid' ? '$80-$150/mo' : '$100-$200/mo',
+      next: 'Get quotes from multiple providers. Consider bundling with home/renters insurance for discounts.'
+    });
   }
 
-  // Age-based
-  if (age === '56-65' || age === '65+') {
-    recommendations.push({ icon:'piggy-bank', title:'Long-Term Care Insurance', priority:'Recommended', budget:'$100-300/mo', why:'Prepares for potential nursing home or assisted living expenses in retirement.', companies:['Manulife','Sun Life','Aviva'] });
+  if (home === 'own') {
+    recs.push({
+      type: 'Home Insurance',
+      icon: 'home',
+      color: '#22c55e',
+      why: 'As a homeowner, home insurance protects your most valuable asset against damage, theft, and liability. Most mortgage lenders require it.',
+      budget: budget === 'low' ? '$75-$125/mo' : budget === 'mid' ? '$100-$200/mo' : '$150-$300/mo',
+      next: 'Ensure dwelling coverage matches your home\'s rebuild cost, not market value.'
+    });
+  } else if (home === 'rent') {
+    recs.push({
+      type: 'Renters Insurance',
+      icon: 'building',
+      color: '#a855f7',
+      why: 'Renters insurance is affordable and protects your personal belongings. Your landlord\'s policy doesn\'t cover your possessions.',
+      budget: '$15-$30/mo',
+      next: 'Create a home inventory to determine the right coverage amount.'
+    });
   }
 
-  // Always recommend
-  if (assets === 'renter') {
-    recommendations.push({ icon:'umbrella', title:'Renters Insurance', priority:'Recommended', budget:'$10-20/mo', why:'Affordable protection for personal belongings and liability as a renter.', companies:['Allstate','Liberty Mutual','Nationwide'] });
+  if (dependents === 'yes') {
+    recs.push({
+      type: 'Life Insurance',
+      icon: 'heart',
+      color: '#f59e0b',
+      why: 'With dependents relying on your income, life insurance ensures they\'re financially protected if something happens to you.',
+      budget: age === '18-25' ? '$20-$40/mo' : age === '26-35' ? '$25-$60/mo' : age === '36-50' ? '$40-$120/mo' : '$80-$250/mo',
+      next: 'Start with term life for affordable coverage. Consider 10-15x your annual income as a starting point.'
+    });
   }
 
+  if (priority === 'retirement' || age === '50+') {
+    recs.push({
+      type: 'Annuities / Long-Term Care',
+      icon: 'trending-up',
+      color: '#059669',
+      why: age === '50+' ? 'At this life stage, retirement planning and long-term care protection become critical priorities.' : 'Since retirement planning is your top priority, annuities can provide guaranteed income streams.',
+      budget: budget === 'premium' ? '$200-$500/mo' : '$100-$300/mo',
+      next: 'Consult a licensed financial advisor to explore annuity options that match your retirement timeline.'
+    });
+  }
+
+  if (priority === 'business') {
+    recs.push({
+      type: 'Business Insurance',
+      icon: 'briefcase',
+      color: '#6366f1',
+      why: 'Business insurance protects your professional endeavors from liability claims, property damage, and employee-related risks.',
+      budget: '$50-$200/mo',
+      next: 'Start with general liability insurance and add coverage types as your business grows.'
+    });
+  }
+
+  if (priority === 'travel') {
+    recs.push({
+      type: 'Travel Insurance',
+      icon: 'plane',
+      color: '#14b8a6',
+      why: 'For frequent travelers or adventure seekers, travel insurance covers medical emergencies abroad, trip cancellations, and lost belongings.',
+      budget: '4-10% of trip cost',
+      next: 'Consider an annual travel insurance policy if you travel multiple times per year.'
+    });
+  }
+
+  if (priority === 'family' && dependents === 'yes') {
+    recs.push({
+      type: 'Disability Insurance',
+      icon: 'accessibility',
+      color: '#06b6d4',
+      why: 'Protecting your income is crucial when others depend on you. Disability insurance replaces income if you can\'t work due to illness or injury.',
+      budget: '1-3% of annual income/mo',
+      next: 'Check if your employer offers disability coverage and consider supplemental individual coverage.'
+    });
+  }
+
+  // Render results
   const resultsDiv = document.getElementById('calc-results');
   resultsDiv.classList.remove('hidden');
   resultsDiv.innerHTML = `
-    <div class="border-t border-gold-400/20 pt-8">
-      <h3 class="font-display text-2xl font-bold text-white mb-2">Your Personalized Plan</h3>
-      <p class="text-white/60 text-sm mb-6">Based on your profile, here are our top recommendations:</p>
+    <div class="bg-navy-500/40 border border-gold-500/10 rounded-2xl p-6 md:p-10">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="check-circle" class="w-8 h-8 text-gold-500"></i>
+        </div>
+        <h2 class="heading-font text-2xl md:text-3xl font-bold text-white mb-2">Your Personalized Recommendations</h2>
+        <p class="text-gray-400 text-sm">Based on your profile, here are the insurance types that may best fit your needs:</p>
+      </div>
+      
       <div class="space-y-4">
-        ${recommendations.map((r,i) => `
-          <div class="bg-navy-800 border border-gold-400/15 rounded-xl p-5" style="animation:fadeUp 0.4s ease forwards;animation-delay:${i*0.1}s;opacity:0">
+        ${recs.map(r => `
+          <div class="bg-navy-700/30 border border-gold-500/5 rounded-xl p-5">
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0">
-                <i data-lucide="${r.icon}" class="w-6 h-6 text-navy-600"></i>
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${r.color}15">
+                <i data-lucide="${r.icon}" class="w-6 h-6" style="color:${r.color}"></i>
               </div>
               <div class="flex-1">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <h4 class="font-bold text-white text-base">${r.title}</h4>
-                  <span class="px-2 py-0.5 rounded-full text-xs font-bold ${r.priority==='Essential'?'bg-red-500/20 text-red-300':'bg-gold-400/20 text-gold-300'}">${r.priority}</span>
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                  <h3 class="text-white font-bold text-lg">${r.type}</h3>
+                  <span class="bg-gold-500/10 text-gold-400 px-3 py-1 rounded-full text-xs font-semibold">~${r.budget}</span>
                 </div>
-                <p class="text-gold-300 text-sm font-semibold mt-2">Est. Monthly: <span class="text-white">${r.budget}</span></p>
-                <p class="text-white/60 text-sm mt-2">${r.why}</p>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  ${r.companies.map(name => {
-                    const comp = companies.find(c => c.name === name);
-                    return comp ? `<a href="${comp.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-navy-700 border border-gold-400/20 text-gold-400 text-xs font-semibold hover:bg-gold-400 hover:text-navy-600 transition-all">${name}</a>` : '';
-                  }).join('')}
+                <p class="text-gray-400 text-sm mb-3 leading-relaxed">${r.why}</p>
+                <div class="bg-navy-500/50 rounded-lg p-3">
+                  <span class="text-gold-400 text-xs font-semibold flex items-center gap-1 mb-1"><i data-lucide="arrow-right-circle" class="w-3 h-3"></i> Next Step:</span>
+                  <p class="text-gray-300 text-xs">${r.next}</p>
                 </div>
               </div>
             </div>
           </div>
         `).join('')}
       </div>
-      <button onclick="navigateTo('companies')" class="mt-8 w-full py-3 border-2 border-gold-400/40 text-white font-semibold rounded-lg hover:bg-gold-400/10 transition-all text-center">Browse All Insurance Companies →</button>
-      <p class="text-white/40 text-xs mt-4 text-center">Next step: Visit provider websites for quotes and detailed plan information.</p>
-    </div>`;
+      
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="navigateTo('companies')" class="btn-gold px-6 py-3 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2">
+          <i data-lucide="building" class="w-4 h-4"></i> Browse Providers
+        </button>
+        <button onclick="navigateTo('blogs')" class="px-6 py-3 border border-gold-500/40 text-gold-400 rounded-xl hover:bg-gold-500/10 transition-all text-sm font-semibold inline-flex items-center justify-center gap-2">
+          <i data-lucide="book-open" class="w-4 h-4"></i> Read Guides
+        </button>
+      </div>
+    </div>
+  `;
   lucide.createIcons();
-  resultsDiv.scrollIntoView({ behavior:'smooth', block:'start' });
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ==================== CONTACT ====================
-function submitContact() {
-  const name = document.getElementById('contact-name').value;
-  const email = document.getElementById('contact-email').value;
-  const subject = document.getElementById('contact-subject').value;
-  const message = document.getElementById('contact-message').value;
-
-  if (!name || !email || !subject || !message) {
-    showToast('Please fill in all fields.', 'warning');
-    return;
-  }
-
-  const btn = document.getElementById('contact-submit');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="animate-spin inline-block w-5 h-5 border-2 border-navy-600 border-t-transparent rounded-full"></span> Sending...';
-
-  setTimeout(() => {
-    document.getElementById('contact-form').classList.add('hidden');
-    document.getElementById('contact-success').classList.remove('hidden');
-    lucide.createIcons();
-  }, 1500);
+// ========== CONTACT FORM ==========
+function submitContactForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+  form.classList.add('hidden');
+  success.classList.remove('hidden');
+  showToast('Message sent successfully!');
 }
 
-// ==================== LEGAL TABS ====================
-function switchLegalTab(tab) {
-  document.querySelectorAll('.legal-tab').forEach(b => {
-    b.classList.toggle('active', b.dataset.legal === tab);
-  });
-  document.querySelectorAll('.legal-content').forEach(c => c.classList.add('hidden'));
-  const target = document.getElementById('legal-' + tab);
-  if (target) target.classList.remove('hidden');
+function resetContactForm() {
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+  form.classList.remove('hidden');
+  success.classList.add('hidden');
+  form.reset();
 }
 
-// ==================== TOAST ====================
-function showToast(msg, type) {
-  const existing = document.querySelector('.toast-msg');
-  if (existing) existing.remove();
-  const toast = document.createElement('div');
-  toast.className = `toast-msg fixed top-24 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 rounded-xl shadow-2xl text-sm font-medium ${type==='warning'?'bg-amber-500 text-white':'bg-green-500 text-white'}`;
-  toast.textContent = msg;
-  document.getElementById('app-wrapper').appendChild(toast);
-  setTimeout(() => toast.remove(), 3500);
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 inline mr-2"></i>${msg}`;
+  toast.classList.add('show');
+  lucide.createIcons();
+  setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ==================== INIT ====================
+// ========== ELEMENT SDK ==========
 const defaultConfig = {
-  hero_title: 'Premium Insurance & <span class="text-gold-400">Finance Portal</span>',
-  hero_subtitle: 'Secure your future with our elite dual-market platform. Market Insurance, Financial Insurance, 25+ expert blogs, and instant access to top providers.',
-  about_heading: 'Premium Insurance & Finance Portal',
-  background_color: '#0B1D51',
-  surface_color: '#ffffff',
-  text_color: '#0B1D51',
-  primary_action_color: '#D4A843',
-  secondary_action_color: '#3d62a0',
-  font_family: 'DM Sans',
+  hero_title: 'Premium Insurance & Finance Portal',
+  hero_subtitle: 'Your trusted guide to understanding insurance. Explore educational resources, compare coverage options, and discover top insurance providers — all in one place.',
+  about_title: 'About ProtectV',
+  background_color: '#0f1b33',
+  surface_color: '#1a2744',
+  text_color: '#e5e7eb',
+  primary_action_color: '#d4a843',
+  secondary_action_color: '#f7da63',
+  font_family: 'Playfair Display',
   font_size: 16
 };
 
 function applyConfig(config) {
-  const heroTitle = document.getElementById('hero-title');
-  const heroSub = document.getElementById('hero-subtitle');
-  const aboutHead = document.getElementById('about-heading');
+  const heroTitle = document.getElementById('heroTitle');
+  const heroSubtitle = document.getElementById('heroSubtitle');
+  const aboutTitle = document.getElementById('aboutTitle');
 
-  if (heroTitle) heroTitle.innerHTML = config.hero_title || defaultConfig.hero_title;
-  if (heroSub) heroSub.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-  if (aboutHead) aboutHead.textContent = config.about_heading || defaultConfig.about_heading;
+  if (heroTitle) {
+    const title = config.hero_title || defaultConfig.hero_title;
+    heroTitle.innerHTML = title;
+  }
+  if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+  if (aboutTitle) {
+    const about = config.about_title || defaultConfig.about_title;
+    aboutTitle.innerHTML = about.replace('ProtectV', '<span class="gold-gradient">ProtectV</span>');
+  }
+
+  const font = config.font_family || defaultConfig.font_family;
+  const baseSize = config.font_size || defaultConfig.font_size;
+  document.querySelectorAll('.heading-font, h1, h2, h3, h4, h5, h6').forEach(el => {
+    el.style.fontFamily = `${font}, Playfair Display, serif`;
+  });
 
   const bg = config.background_color || defaultConfig.background_color;
   const surface = config.surface_color || defaultConfig.surface_color;
   const text = config.text_color || defaultConfig.text_color;
   const primary = config.primary_action_color || defaultConfig.primary_action_color;
   const secondary = config.secondary_action_color || defaultConfig.secondary_action_color;
-  const font = config.font_family || defaultConfig.font_family;
-  const size = config.font_size || defaultConfig.font_size;
 
-  document.documentElement.style.setProperty('--bg', bg);
-  document.documentElement.style.setProperty('--surface', surface);
-
-  // Apply font
-  document.querySelectorAll('body, .font-display, h1, h2, h3, h4, p, span, button, a, label, select, input, textarea').forEach(el => {
-    if (el.classList.contains('font-display')) {
-      el.style.fontFamily = `Playfair Display, ${font}, serif`;
-    }
-  });
-  document.body.style.fontFamily = `${font}, DM Sans, sans-serif`;
-
-  // Apply font size
-  document.body.style.fontSize = `${size}px`;
+  document.body.style.color = text;
 }
 
-window.elementSdk.init({
-  defaultConfig,
-  onConfigChange: async (config) => { applyConfig(config); },
-  mapToCapabilities: (config) => ({
-    recolorables: [
-      { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }},
-      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }},
-      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }},
-      { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); }},
-      { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); }}
-    ],
-    borderables: [],
-    fontEditable: {
-      get: () => config.font_family || defaultConfig.font_family,
-      set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-    },
-    fontSizeable: {
-      get: () => config.font_size || defaultConfig.font_size,
-      set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
-    }
-  }),
-  mapToEditPanelValues: (config) => new Map([
-    ['hero_title', config.hero_title || defaultConfig.hero_title],
-    ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
-    ['about_heading', config.about_heading || defaultConfig.about_heading]
-  ])
-});
+if (window.elementSdk) {
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => { applyConfig(config); },
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }},
+        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }},
+        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }},
+        { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); }},
+        { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); }},
+      ],
+      borderables: [],
+      fontEditable: {
+        get: () => config.font_family || defaultConfig.font_family,
+        set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+      },
+      fontSizeable: {
+        get: () => config.font_size || defaultConfig.font_size,
+        set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+      }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['hero_title', config.hero_title || defaultConfig.hero_title],
+      ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+      ['about_title', config.about_title || defaultConfig.about_title],
+    ])
+  });
+}
 
-// Render all sections
-renderInsuranceTypes();
-renderCompanies();
-renderBlogTabs();
-renderBlogs();
-lucide.createIcons();
-
-// Navbar scroll effect
-const wrapper = document.getElementById('app-wrapper');
-const nav = document.getElementById('main-nav');
-wrapper.addEventListener('scroll', () => {
-  if (wrapper.scrollTop > 50) {
-    nav.classList.add('shadow-lg');
-  } else {
-    nav.classList.remove('shadow-lg');
-  }
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderHomeCategories();
+  renderHomeCompanies();
+  renderHomeBlogs();
+  renderInsurance();
+  renderCompanies();
+  renderBlogTabs();
+  renderBlogs();
+  lucide.createIcons();
 });
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dd5729924d74b13',t:'MTc3MzY4MTgyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dd5a55b91544b13',t:'MTc3MzY4MzkwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
